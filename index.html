@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#FAFAF7; }
+a { color:#0B6B47; } a:hover { color:#00BD80; }
+@keyframes dcRise { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+@keyframes dcPulse { 0%,100% { box-shadow:0 0 0 0 rgba(0,189,128,.5); } 70% { box-shadow:0 0 0 10px rgba(0,189,128,0); } }
+</style>
+</helmet>
+<div style="min-height:100vh;background:#FAFAF7;color:#141A17;font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased">
+  <header style="max-width:1280px;margin:0 auto;padding:28px 24px;display:flex;align-items:center;gap:16px">
+    <img src="assets/dcase-logo.png" alt="DCase" style="height:34px;width:auto;display:block">
+    <span style="width:1px;height:22px;background:rgba(20,26,23,.15)"></span>
+    <span style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6F7B76">Yeni site · tasarım yönleri</span>
+    <span style="flex:1"></span>
+    <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#0B6B47"><span style="width:8px;height:8px;border-radius:50%;background:#00BD80;animation:dcPulse 2s infinite"></span>Canlı önizleme</span>
+  </header>
+  <main style="max-width:1280px;margin:0 auto;padding:24px 24px 96px">
+    <div style="max-width:760px;display:flex;flex-direction:column;gap:14px;animation:dcRise .8s ease-out both">
+      <h1 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-.035em;text-wrap:balance">Ana sayfa için üç yön</h1>
+      <p style="margin:0;font-size:17px;color:#4B5651;text-wrap:pretty">Üçü de aynı marka sistemini (logo yeşili, tek font ailesi, EN/TR anahtarı, canlı ürün ekranları) farklı bir karakterle kullanıyor. Bir karta tıklayın; sayfa tam boyutta açılır.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:22px;margin-top:44px">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="3">
+        <a href="{{ c.href }}" style="display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:#fff;border:1px solid rgba(20,26,23,.1);text-decoration:none;color:#141A17;transition:transform .35s,box-shadow .35s,border-color .35s;animation:dcRise .9s ease-out both;animation-delay: {{ c.delay }}" style-hover="transform:translateY(-6px);box-shadow:0 40px 70px -40px rgba(11,61,46,.45);border-color:#00BD80;color:#141A17">
+          <div data-frame style="position:relative;aspect-ratio:16/10;overflow:hidden;background: {{ c.bg }};border-bottom:1px solid rgba(20,26,23,.08)">
+            <iframe src="{{ c.href }}" title="{{ c.title }}" loading="lazy" tabindex="-1" style="position:absolute;top:0;left:0;width:1440px;height:900px;border:0;pointer-events:none;transform-origin:0 0;transform: {{ scale }}"></iframe>
+            <div style="position:absolute;inset:0"></div>
+            <div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:#00BD80;color:#062B20;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:18px;box-shadow:0 10px 24px -10px rgba(0,0,0,.4)">{{ c.letter }}</div>
+          </div>
+          <div style="padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:24px;letter-spacing:-.02em">{{ c.title }}</div><span style="padding:5px 10px;border-radius:999px;background:#F4F6F5;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#4B5651">{{ c.theme }}</span></div>
+            <p style="margin:0;font-size:14.5px;color:#4B5651;line-height:1.55">{{ c.desc }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px"><sc-for list="{{ c.tags }}" as="t" hint-placeholder-count="3"><span style="padding:5px 10px;border-radius:999px;border:1px solid rgba(20,26,23,.12);font-size:12px;font-weight:700;color:#2E3834">{{ t.label }}</span></sc-for></div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:14px;font-weight:800;font-size:14px;color:#0B6B47">Sayfayı aç<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <div style="margin-top:56px;padding-top:24px;border-top:1px solid rgba(20,26,23,.1);display:flex;flex-wrap:wrap;gap:16px 32px;font-size:13.5px;color:#6F7B76">
+      <span>Ortak parçalar: SiteNav · SiteFooter · MockConsole · MockWorkflow · MockSla · MockAnalytics · copy.js (EN/TR)</span>
+      <span style="flex:1"></span>
+      <a href="Logo.dc.html" style="font-weight:700;text-decoration:none">Logo dosyaları</a>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CARDS = [
+  { letter:'A', title:'Komuta Merkezi', theme:'Koyu', href:'home-a.dc.html', bg:'#0B0F0E', desc:'Koyu zemin, hero\u2019da 3D e\u011fimli canl\u0131 Incident konsolu, imleci izleyen \u0131\u015f\u0131ma ve otomatik d\u00f6nen mod\u00fcl sekmeleri. Teknik, g\u00fc\u00e7l\u00fc, \u201cplatform\u201d hissi.', tags:['3D hero','Sekmeli mod\u00fcller','Glow'] },
+  { letter:'B', title:'Editoryal', theme:'A\u00e7\u0131k', href:'home-b.dc.html', bg:'#FAFAF7', desc:'S\u0131cak a\u00e7\u0131k zemin, dev tipografi, parallax\u2019l\u0131 y\u00fczen UI kartlar\u0131; mod\u00fcller zigzag hik\u00e2ye ak\u0131\u015f\u0131yla anlat\u0131l\u0131r. Kurumsal ve sakin.', tags:['B\u00fcy\u00fck tipografi','Zigzag anlat\u0131m','Parallax'] },
+  { letter:'C', title:'Bento', theme:'A\u00e7\u0131k', href:'home-c.dc.html', bg:'#FFFFFF', desc:'Ortalanm\u0131\u015f ba\u015fl\u0131k ve t\u00fcm canl\u0131 mod\u00fcllerin bento \u0131zgaras\u0131; yatay kayd\u0131rmal\u0131 sonu\u00e7 kartlar\u0131, sekmeli ekip paneli. Modern SaaS.', tags:['Bento \u0131zgara','\u00dcr\u00fcn \u00f6nce','Yo\u011fun'] },
+];
+class Component extends DCLogic {
+  state = { w: 400 };
+  componentDidMount(){
+    this.ro = new ResizeObserver(es => { const w = es[0].contentRect.width; if (Math.abs(w - this.state.w) > 2) this.setState({ w }); });
+    const attach = tries => { const el = document.querySelector('[data-frame]'); if (el) { this.ro.observe(el); this.setState({ w: el.getBoundingClientRect().width }); } else if (tries > 0) setTimeout(() => attach(tries - 1), 150); };
+    attach(20);
+  }
+  componentWillUnmount(){ if (this.ro) this.ro.disconnect(); }
+  renderVals(){
+    return { scale: 'scale(' + (this.state.w / 1440).toFixed(4) + ')', cards: CARDS.map((c, i) => ({ ...c, delay: (i * 110) + 'ms', tags: c.tags.map(t => ({ label: t })) })) };
+  }
+}
+</script>
+</body>
+</html>

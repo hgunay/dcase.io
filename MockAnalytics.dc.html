@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+</helmet>
+<div style="width:100%;background:#fff;border:1px solid #E3E8E5;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(8,30,20,.35);font-family:Manrope,system-ui,sans-serif;color:#141A17;font-size:12px;text-align:left;padding:16px;box-sizing:border-box">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+    <img src="assets/dcase-logo.png" alt="dcase" style="height:17px;width:auto;display:block">
+    <div style="width:1px;height:18px;background:#E3E8E5"></div>
+    <div><div style="font-size:14px;font-weight:800;letter-spacing:-.01em">Reporting &amp; Analytics</div><div style="font-size:10.5px;color:#7C8883">Monitor service performance and trends</div></div>
+    <div style="flex:1"></div>
+    <div style="height:26px;padding:0 10px;border-radius:7px;border:1px solid #DFE5E2;color:#3B4A44;font-weight:600;display:flex;align-items:center;gap:6px;font-size:11px">Last 30 days <span style="font-size:9px">▾</span></div>
+    <div style="height:26px;padding:0 10px;border-radius:7px;background:#00BD80;color:#062B20;font-weight:800;display:flex;align-items:center;font-size:11px">Export</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px">
+    <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+      <div style="border:1px solid #E9EDEB;border-radius:12px;padding:10px 12px;min-width:0"><div style="font-size:10.5px;color:#7C8883;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ k.label }}</div><div style="font-size:20px;font-weight:800;letter-spacing:-.03em;margin:4px 0 2px;font-variant-numeric:tabular-nums">{{ k.value }}</div><div style="font-size:10px;font-weight:700;color: {{ k.color }}">{{ k.delta }}</div></div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px">
+    <div style="border:1px solid #E9EDEB;border-radius:12px;padding:12px">
+      <div style="font-weight:800;font-size:12px">Team Performance (Monthly)</div><div style="font-size:10px;color:#7C8883;margin-bottom:10px">Tickets opened vs resolved</div>
+      <div style="display:flex;align-items:flex-end;gap:10px;height:120px;border-bottom:1px solid #E9EDEB;padding-bottom:0">
+        <sc-for list="{{ months }}" as="m" hint-placeholder-count="6">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;min-width:0"><div style="display:flex;align-items:flex-end;gap:3px;height:100%"><div style="flex:1;border-radius:3px 3px 0 0;background:#0B3D2E;height: {{ m.a }};transition:height 1.1s cubic-bezier(.2,.7,.2,1)"></div><div style="flex:1;border-radius:3px 3px 0 0;background:#00BD80;height: {{ m.b }};transition:height 1.1s cubic-bezier(.2,.7,.2,1)"></div></div></div>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:6px"><sc-for list="{{ months }}" as="m" hint-placeholder-count="6"><div style="flex:1;text-align:center;font-size:9.5px;color:#7C8883">{{ m.name }}</div></sc-for></div>
+      <div style="display:flex;gap:12px;margin-top:8px;font-size:10px;color:#3B4A44"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:2px;background:#0B3D2E"></span>tickets</span><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:2px;background:#00BD80"></span>resolved</span></div>
+    </div>
+    <div style="border:1px solid #E9EDEB;border-radius:12px;padding:12px;display:flex;flex-direction:column">
+      <div style="font-weight:800;font-size:12px">Ticket Distribution</div><div style="font-size:10px;color:#7C8883;margin-bottom:8px">By channel</div>
+      <div style="display:flex;align-items:center;gap:12px;flex:1">
+        <div style="position:relative;width:96px;height:96px;flex:none"><svg viewBox="0 0 42 42" style="width:100%;height:100%;transform:rotate(-90deg)"><circle cx="21" cy="21" r="15.9" fill="none" stroke="#0B3D2E" stroke-width="6" stroke-dasharray="{{ d0 }}" stroke-dashoffset="0" style="transition:stroke-dasharray 1s"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#00BD80" stroke-width="6" stroke-dasharray="{{ d1 }}" stroke-dashoffset="{{ o1 }}" style="transition:all 1s"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#7ADCB8" stroke-width="6" stroke-dasharray="{{ d2 }}" stroke-dashoffset="{{ o2 }}" style="transition:all 1s"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#CFE7DC" stroke-width="6" stroke-dasharray="{{ d3 }}" stroke-dashoffset="{{ o3 }}" style="transition:all 1s"></circle></svg><div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center"><div><div style="font-size:15px;font-weight:800;letter-spacing:-.02em;line-height:1">{{ total }}</div><div style="font-size:8.5px;color:#7C8883">total</div></div></div></div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:0">
+          <sc-for list="{{ legend }}" as="l" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:6px;font-size:10.5px"><span style="width:8px;height:8px;border-radius:50%;background: {{ l.c }};flex:none"></span><span style="color:#3B4A44;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.name }}</span><span style="font-weight:800;font-variant-numeric:tabular-nums">{{ l.pct }}</span></div></sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:440}}">
+const NAMES = ['Jan','Feb','Mar','Apr','May','Jun'];
+const BASE_A = [64,40,84,30,54,60], BASE_B = [54,34,78,28,46,52];
+const SHARE = [['Email',35],['Phone',45],['Portal',15],['Chat',5]];
+const COLORS = ['#0B3D2E','#00BD80','#7ADCB8','#CFE7DC'];
+class Component extends DCLogic {
+  state = { a: BASE_A.map(() => 0), b: BASE_B.map(() => 0), share: SHARE.map(s => s[1]), total: 1248, open: 342 };
+  componentDidMount(){
+    this.t0 = setTimeout(() => this.setState({ a: BASE_A, b: BASE_B }), 120);
+    this.t1 = setInterval(() => this.setState(s => {
+      const j = () => Math.floor(Math.random()*13) - 6;
+      const a = BASE_A.map(v => Math.max(12, Math.min(100, v + j()))), b = a.map((v,i) => Math.max(8, v - 4 - Math.floor(Math.random()*8)));
+      let sh = SHARE.map(x => Math.max(3, x[1] + Math.floor(Math.random()*5) - 2)); const sum = sh.reduce((p,c) => p+c, 0); sh = sh.map(x => Math.round(x / sum * 100));
+      return { a, b, share: sh, total: s.total + Math.floor(Math.random()*4), open: Math.max(300, s.open + Math.floor(Math.random()*7) - 3) };
+    }), 4500);
+  }
+  componentWillUnmount(){ clearTimeout(this.t0); clearInterval(this.t1); }
+  renderVals(){
+    const { a, b, share, total, open } = this.state, C = 100;
+    const dash = (p) => p + ' ' + (C - p); let acc = 0; const offs = share.map(p => { const o = -acc; acc += p; return o; });
+    return {
+      kpis: [ { label:'Total Tickets', value: total.toLocaleString('en-US'), delta:'↑ 12% vs last month', color:'#0B6B47' }, { label:'Open Tickets', value: String(open), delta:'↓ 8% vs last month', color:'#0B6B47' }, { label:'Avg. FRT', value:'18m', delta:'↓ 5% vs last month', color:'#0B6B47' }, { label:'Avg. TTR', value:'4.2h', delta:'↑ 8% vs last month', color:'#B42318' } ],
+      months: NAMES.map((n,i) => ({ name:n, a: a[i] + '%', b: b[i] + '%' })),
+      d0: dash(share[0]), d1: dash(share[1]), o1: offs[1], d2: dash(share[2]), o2: offs[2], d3: dash(share[3]), o3: offs[3],
+      total: total.toLocaleString('en-US'),
+      legend: SHARE.map((s,i) => ({ name: s[0], pct: share[i] + '%', c: COLORS[i] })),
+    };
+  }
+}
+</script>
+</body>
+</html>

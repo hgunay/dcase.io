@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+@keyframes dcGrow { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+@keyframes dcPulseDot { 0%,100% { box-shadow:0 0 0 0 rgba(0,189,128,.5); } 70% { box-shadow:0 0 0 6px rgba(0,189,128,0); } }
+</style>
+</helmet>
+<div style="width:100%;background:#fff;border:1px solid #E3E8E5;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(8,30,20,.35);font-family:Manrope,system-ui,sans-serif;color:#141A17;font-size:12px;text-align:left;padding:16px;box-sizing:border-box">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+    <img src="assets/dcase-logo.png" alt="dcase" style="height:17px;width:auto;display:block">
+    <div style="width:1px;height:18px;background:#E3E8E5"></div>
+    <div style="font-size:14px;font-weight:800;letter-spacing:-.01em">SLA &amp; OLA Management</div>
+    <div style="flex:1"></div>
+    <div style="color:#0B6B47;font-weight:700;font-size:11px">+ New Agreement</div>
+  </div>
+  <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:stretch">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px 16px;border:1px solid #E9EDEB;border-radius:12px;background:#FAFCFB;min-width:150px">
+      <div style="position:relative;width:112px;height:112px">
+        <svg viewBox="0 0 100 100" style="width:100%;height:100%;transform:rotate(-90deg)"><circle cx="50" cy="50" r="42" fill="none" stroke="#E6ECE9" stroke-width="10"></circle><circle cx="50" cy="50" r="42" fill="none" stroke="#00BD80" stroke-width="10" stroke-linecap="round" stroke-dasharray="263.9" style="stroke-dashoffset: {{ ringOffset }};transition:stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1)"></circle></svg>
+        <div style="position:absolute;inset:0;display:grid;place-items:center"><div style="text-align:center"><div style="font-size:24px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums">{{ pctText }}</div><div style="font-size:9.5px;color:#7C8883;font-weight:600;margin-top:3px">Compliance</div></div></div>
+      </div>
+      <div style="display:flex;gap:10px;font-size:10.5px;color:#5A6661"><span><strong style="color:#141A17">24</strong> SLAs</span><span><strong style="color:#141A17">16</strong> OLAs</span><span><strong style="color:#B42318">{{ atRisk }}</strong> at risk</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+      <div style="display:flex;align-items:center;justify-content:space-between"><div style="font-weight:800;font-size:12.5px">Active Agreements</div><div style="font-size:10.5px;color:#7C8883">View all</div></div>
+      <sc-for list="{{ agreements }}" as="a" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:40px minmax(0,1fr) 110px;gap:10px;align-items:center;padding:8px 10px;border:1px solid #E9EDEB;border-radius:10px">
+          <div style="padding:3px 0;border-radius:6px;text-align:center;font-size:9.5px;font-weight:800;background: {{ a.tagBg }};color: {{ a.tagFg }}">{{ a.type }}</div>
+          <div style="min-width:0"><div style="font-weight:700;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.name }}</div><div style="font-size:10px;color:#7C8883;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Target: {{ a.target }} · Current: {{ a.current }}</div></div>
+          <div><div style="display:flex;align-items:center;justify-content:flex-end;gap:5px;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums"><span>{{ a.pctText }}</span><span style="width:6px;height:6px;border-radius:50%;background: {{ a.dot }};animation:dcPulseDot 2s infinite"></span></div><div style="height:4px;border-radius:3px;background:#E6ECE9;margin-top:4px;overflow:hidden"><div style="height:100%;border-radius:3px;background: {{ a.bar }};width: {{ a.w }};transition:width 1.4s cubic-bezier(.2,.7,.2,1)"></div></div></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:12px;margin-top:12px">
+    <div style="border:1px solid #E9EDEB;border-radius:12px;padding:10px 12px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px"><span style="font-weight:800">Compliance Trend</span><span style="color:#7C8883">Last 30 days</span></div><div style="display:flex;align-items:flex-end;gap:5px;height:56px">
+      <sc-for list="{{ trend }}" as="b" hint-placeholder-count="10"><div style="flex:1;border-radius:3px 3px 0 0;background:#00BD80;transform-origin:bottom;height: {{ b.h }};animation:dcGrow .9s cubic-bezier(.2,.7,.2,1) both;animation-delay: {{ b.d }};opacity: {{ b.o }}"></div></sc-for>
+    </div></div>
+    <div style="border:1px solid #E9EDEB;border-radius:12px;padding:10px 12px"><div style="font-size:11px;font-weight:800;margin-bottom:6px">Breach Analysis</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:4px 0;border-bottom:1px solid #EFF3F1"><span style="color:#3B4A44">Response Time</span><span style="padding:1px 7px;border-radius:999px;background:#FFF3D6;color:#8A5A00;font-weight:800;font-size:10px">12</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:4px 0;border-bottom:1px solid #EFF3F1"><span style="color:#3B4A44">Resolution Time</span><span style="padding:1px 7px;border-radius:999px;background:#FDE8E8;color:#B42318;font-weight:800;font-size:10px">8</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:4px 0"><span style="color:#3B4A44">Quality Target</span><span style="padding:1px 7px;border-radius:999px;background:#DDF6EA;color:#0B6B47;font-weight:800;font-size:10px">3</span></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:620,&quot;height&quot;:480}}">
+const AGR = [
+  { type:'SLA', name:'Customer Support Response Time', target:'15 minutes', current:'12 minutes', pct:96 },
+  { type:'SLA', name:'Network Uptime', target:'99.9%', current:'99.95%', pct:100 },
+  { type:'OLA', name:'Incident Resolution', target:'4 hours', current:'3.8 hours', pct:92 },
+  { type:'SLA', name:'Change Request Processing', target:'24 hours', current:'26 hours', pct:85 },
+];
+const TREND = [88,90,91,89,93,92,94,95,93,94,96,94];
+class Component extends DCLogic {
+  state = { pct: 0, shown: 0, mounted: false, agr: AGR.map(a => ({...a, w: 0})), atRisk: 3 };
+  componentDidMount(){
+    this.t0 = setTimeout(() => { this.setState({ mounted: true, agr: AGR.map(a => ({...a, w: a.pct})) }); this.animateTo(94); }, 150);
+    this.t1 = setInterval(() => { const target = 92 + Math.floor(Math.random() * 5); this.animateTo(target); this.setState(s => ({ atRisk: target >= 95 ? 2 : 3, agr: s.agr.map(a => ({...a, w: Math.max(80, Math.min(100, a.pct + Math.floor(Math.random()*5) - 2))})) })); }, 4200);
+  }
+  componentWillUnmount(){ clearTimeout(this.t0); clearInterval(this.t1); cancelAnimationFrame(this.raf); }
+  animateTo(target){
+    const from = this.state.shown, t0 = performance.now(), dur = 1400;
+    cancelAnimationFrame(this.raf);
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); this.setState({ shown: Math.round(from + (target - from) * e), pct: target }); if (k < 1) this.raf = requestAnimationFrame(step); };
+    this.raf = requestAnimationFrame(step);
+  }
+  renderVals(){
+    const C = 263.9;
+    return {
+      ringOffset: (C * (1 - this.state.pct / 100)).toFixed(1) + 'px', pctText: this.state.shown + '%', atRisk: this.state.atRisk,
+      agreements: this.state.agr.map(a => ({ ...a, w: a.w + '%', pctText: a.w + '%', tagBg: a.type === 'OLA' ? '#0B3D2E' : '#DDF6EA', tagFg: a.type === 'OLA' ? '#fff' : '#0B6B47', dot: a.w < 90 ? '#E5A000' : '#00BD80', bar: a.w < 90 ? '#E5A000' : '#00BD80' })),
+      trend: TREND.map((v, i) => ({ h: (v - 70) / 30 * 100 + '%', d: (i * 60) + 'ms', o: this.state.mounted ? 1 : 0 })),
+    };
+  }
+}
+</script>
+</body>
+</html>

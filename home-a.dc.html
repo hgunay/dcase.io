@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#0B0F0E; }
+a { color:#00BD80; } a:hover { color:#5FE0B4; }
+@keyframes dcMarquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes dcRise { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+@keyframes dcFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-12px); } }
+@keyframes dcPulse { 0%,100% { box-shadow:0 0 0 0 rgba(0,189,128,.55); } 70% { box-shadow:0 0 0 10px rgba(0,189,128,0); } }
+@keyframes dcOrb { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-40px,30px) scale(1.15); } }
+@keyframes dcSpin { to { transform:rotate(360deg); } }
+</style>
+<script type="module">import * as m from './copy.js'; window.DCASE_COPY = m.COPY; window.DCASE_LANG = m.getLang();</script>
+</helmet>
+<div style="background:#0B0F0E;color:#F2F5F3;font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:clip;min-height:100vh;-webkit-font-smoothing:antialiased">
+  <div data-progress style="position:fixed;top:0;left:0;height:2px;width:0;background:#00BD80;z-index:60;box-shadow:0 0 12px rgba(0,189,128,.8)"></div>
+  <div style="position:fixed;top:0;left:0;right:0;z-index:50"><dc-import name="SiteNav" theme="dark" lang="{{ lang }}" on-lang="{{ setLang }}" hint-size="100%,72px"></dc-import></div>
+
+  <section onMouseMove="{{ heroMove }}" onMouseLeave="{{ heroLeave }}" style="position:relative;padding:152px 24px 96px;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 100%)"></div>
+    <div style="position:absolute;top:-120px;right:-80px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.28),rgba(0,189,128,0) 65%);filter:blur(30px);animation:dcOrb 12s ease-in-out infinite"></div>
+    <div style="position:absolute;bottom:-200px;left:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(11,61,46,.9),rgba(11,61,46,0) 65%);filter:blur(40px)"></div>
+    <div data-glow style="position:absolute;left:60%;top:40%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.16),transparent 62%);transform:translate(-50%,-50%);pointer-events:none;transition:left .5s ease-out,top .5s ease-out"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px 64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:26px;max-width:600px">
+        <div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 10px;border-radius:999px;border:1px solid rgba(0,189,128,.35);background:rgba(0,189,128,.1);font-size:12.5px;font-weight:700;letter-spacing:.02em;color:#7FE3C0;animation:dcRise .8s ease-out both"><span style="width:8px;height:8px;border-radius:50%;background:#00BD80;animation:dcPulse 2s infinite"></span>{{ t.hero.eyebrow }}</div>
+        <h1 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(46px,6.2vw,80px);line-height:.98;letter-spacing:-.035em;text-wrap:balance;animation:dcRise .9s .1s ease-out both">{{ t.hero.title1 }}<br><span style="color:#00BD80">{{ t.hero.title2 }}</span></h1>
+        <p style="margin:0;font-size:18px;line-height:1.6;color:#A8B3AE;max-width:540px;text-wrap:pretty;animation:dcRise .9s .2s ease-out both">{{ t.hero.sub }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;animation:dcRise .9s .3s ease-out both">
+          <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 24px;border-radius:999px;background:#00BD80;color:#062B20;text-decoration:none;font-weight:800;font-size:15.5px;box-shadow:0 14px 40px -12px rgba(0,189,128,.75);transition:transform .25s,box-shadow .25s" style-hover="transform:translateY(-2px);box-shadow:0 22px 50px -12px rgba(0,189,128,.9);color:#062B20">{{ t.hero.primary }}<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <a href="#platform" style="display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:#F2F5F3;text-decoration:none;font-weight:700;font-size:15.5px;background:rgba(255,255,255,.03);transition:background .25s,border-color .25s" style-hover="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3);color:#fff"><span style="width:26px;height:26px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 1.5 L8.5 5 L2 8.5 Z" fill="#00BD80"></path></svg></span>{{ t.hero.secondary }}</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:13.5px;color:#7F8B86;animation:dcRise .9s .4s ease-out both"><div style="display:flex"><span style="width:26px;height:26px;border-radius:50%;background:#0B3D2E;border:2px solid #0B0F0E"></span><span style="width:26px;height:26px;border-radius:50%;background:#1E6B52;border:2px solid #0B0F0E;margin-left:-8px"></span><span style="width:26px;height:26px;border-radius:50%;background:#00BD80;border:2px solid #0B0F0E;margin-left:-8px"></span></div><span>{{ t.hero.note }}</span></div>
+      </div>
+      <div style="position:relative;min-width:0">
+        <div style="transform:perspective(1600px) rotateY(-10deg) rotateX(4deg);transform-origin:left center;transition:transform .9s cubic-bezier(.2,.7,.2,1)" style-hover="transform:perspective(1600px) rotateY(0deg) rotateX(0deg)">
+          <dc-import name="MockConsole" compact="{{ true }}" hint-size="100%,440px"></dc-import>
+        </div>
+        <div data-depth="0.06" style="position:absolute;top:-22px;left:-26px"><div style="display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:14px;background:rgba(18,24,22,.9);border:1px solid rgba(0,189,128,.35);backdrop-filter:blur(10px);font-size:12.5px;font-weight:700;box-shadow:0 20px 50px -20px rgba(0,0,0,.8);animation:dcFloat 6s ease-in-out infinite"><span style="width:20px;height:20px;border-radius:50%;background:#00BD80;display:grid;place-items:center;color:#062B20;font-size:11px;font-weight:900">✓</span>{{ chip0 }}</div></div>
+        <div data-depth="0.09" style="position:absolute;bottom:34px;left:-44px"><div style="display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:14px;background:rgba(18,24,22,.9);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);font-size:12.5px;font-weight:700;box-shadow:0 20px 50px -20px rgba(0,0,0,.8);animation:dcFloat 7s 1s ease-in-out infinite"><span style="width:20px;height:20px;border-radius:6px;background:rgba(0,189,128,.18);display:grid;place-items:center"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M1 6 H11 M7 2 L11 6 L7 10" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>{{ chip1 }}</div></div>
+        <div data-depth="0.05" style="position:absolute;bottom:-20px;right:22px"><div style="display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:14px;background:rgba(18,24,22,.9);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);font-size:12.5px;font-weight:700;box-shadow:0 20px 50px -20px rgba(0,0,0,.8);animation:dcFloat 8s .5s ease-in-out infinite"><span style="width:20px;height:20px;border-radius:50%;border:2px solid #00BD80;border-right-color:transparent;animation:dcSpin 1.2s linear infinite"></span>{{ chip2 }}</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:20px 0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">
+    <div style="display:flex;gap:14px;width:max-content;animation:dcMarquee 36s linear infinite">
+      <sc-for list="{{ marquee }}" as="s" hint-placeholder-count="16"><div style="display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#A8B3AE;font-size:13.5px;font-weight:700;white-space:nowrap"><span style="width:6px;height:6px;border-radius:50%;background:#00BD80"></span>{{ s.label }}</div></sc-for>
+    </div>
+  </section>
+
+  <section data-counter style="max-width:1200px;margin:0 auto;padding:104px 24px 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
+      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+        <div data-reveal data-reveal-delay="{{ m.delay }}" style="padding:34px 32px;background:#121816;transition:background .3s" style-hover="background:#182019">
+          <div style="display:flex;align-items:baseline;gap:2px;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:64px;line-height:1;letter-spacing:-.04em;color:#fff;font-variant-numeric:tabular-nums"><span>{{ m.shown }}</span><span style="color:#00BD80;font-size:40px">{{ m.suffix }}</span></div>
+          <div style="margin-top:12px;font-weight:700;font-size:16px">{{ m.label }}</div>
+          <div style="margin-top:4px;font-size:13px;color:#7F8B86">{{ m.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="platform" style="max-width:1200px;margin:0 auto;padding:104px 24px 0">
+    <div data-reveal style="max-width:680px;display:flex;flex-direction:column;gap:14px;margin-bottom:48px">
+      <div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#00BD80">{{ t.modules.eyebrow }}</div>
+      <h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.02;letter-spacing:-.03em;text-wrap:balance">{{ t.modules.title }}</h2>
+      <p style="margin:0;font-size:17px;color:#A8B3AE;text-wrap:pretty">{{ t.modules.sub }}</p>
+    </div>
+    <div data-reveal style="display:grid;gap:28px;align-items:start;grid-template-columns: {{ modCols }}" onMouseEnter="{{ pause }}" onMouseLeave="{{ resume }}">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4">
+          <button onClick="{{ tb.select }}" style="position:relative;text-align:left;font-family:inherit;cursor:pointer;padding:18px 20px;border-radius:16px;border:1px solid {{ tb.border }};background: {{ tb.bg }};color:#F2F5F3;transition:background .3s,border-color .3s;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px"><span style="width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:800;background: {{ tb.numBg }};color: {{ tb.numFg }}">{{ tb.num }}</span><span style="font-weight:800;font-size:15.5px">{{ tb.label }}</span></div>
+            <sc-if value="{{ tb.active }}" hint-placeholder-val="{{ false }}">
+              <div style="margin:12px 0 0 40px;font-size:13.5px;color:#A8B3AE;line-height:1.5">{{ tb.tag }}</div>
+              <div style="position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.06)"><div style="height:100%;background:#00BD80;width: {{ progress }};transition:width .1s linear"></div></div>
+            </sc-if>
+          </button>
+        </sc-for>
+      </div>
+      <div style="min-width:0;display:flex;flex-direction:column;gap:22px">
+        <div style="position:relative;border-radius:24px;padding:22px;background:linear-gradient(160deg,rgba(0,189,128,.14),rgba(11,61,46,.25) 50%,rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)">
+          <sc-if value="{{ isTab0 }}" hint-placeholder-val="{{ true }}"><dc-import name="MockConsole" hint-size="100%,460px"></dc-import></sc-if>
+          <sc-if value="{{ isTab1 }}" hint-placeholder-val="{{ false }}"><dc-import name="MockWorkflow" hint-size="100%,460px"></dc-import></sc-if>
+          <sc-if value="{{ isTab2 }}" hint-placeholder-val="{{ false }}"><dc-import name="MockSla" hint-size="100%,460px"></dc-import></sc-if>
+          <sc-if value="{{ isTab3 }}" hint-placeholder-val="{{ false }}"><dc-import name="MockAnalytics" hint-size="100%,460px"></dc-import></sc-if>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 28px;padding:0 6px">
+          <sc-for list="{{ bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:#C9D1CD;line-height:1.5"><span style="flex:none;width:18px;height:18px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>{{ b.text }}</div></sc-for>
+        </div>
+      </div>
+    </div>
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07);font-size:13.5px;color:#7F8B86"><span style="font-weight:700;margin-right:6px">+</span><sc-for list="{{ more }}" as="x" hint-placeholder-count="4"><span style="padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#A8B3AE;font-weight:600">{{ x.label }}</span></sc-for></div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:120px 24px 0">
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:44px">
+      <div style="max-width:620px;display:flex;flex-direction:column;gap:14px"><div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#00BD80">{{ t.outcomes.eyebrow }}</div><h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.02;letter-spacing:-.03em">{{ t.outcomes.title }}</h2></div>
+      <p style="margin:0;font-size:17px;color:#A8B3AE;max-width:360px">{{ t.outcomes.sub }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
+      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+        <div data-reveal data-reveal-delay="{{ p.delay }}" style="position:relative;padding:30px 28px 28px;border-radius:24px;background:#121816;border:1px solid rgba(255,255,255,.08);transition:transform .35s,border-color .35s,box-shadow .35s;overflow:hidden" style-hover="transform:translateY(-6px);border-color:rgba(0,189,128,.45);box-shadow:0 30px 60px -30px rgba(0,189,128,.35)">
+          <div style="position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.22),transparent 65%)"></div>
+          <div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:14px;font-weight:700;color:#00BD80;letter-spacing:.08em">{{ p.n }}</div>
+          <h3 style="margin:12px 0 22px;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:26px;line-height:1.1;letter-spacing:-.02em;text-wrap:balance">{{ p.title }}</h3>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <sc-for list="{{ p.items }}" as="it" hint-placeholder-count="3"><div style="display:flex;gap:12px"><span style="flex:none;width:6px;height:6px;border-radius:50%;background:#00BD80;margin-top:9px"></span><div><div style="font-weight:800;font-size:15px">{{ it.title }}</div><div style="font-size:14px;color:#A8B3AE;line-height:1.5;margin-top:2px">{{ it.desc }}</div></div></div></sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:120px 24px 0">
+    <div data-reveal style="max-width:620px;display:flex;flex-direction:column;gap:14px;margin-bottom:44px"><div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#00BD80">{{ t.teams.eyebrow }}</div><h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.02;letter-spacing:-.03em">{{ t.teams.title }}</h2><p style="margin:0;font-size:17px;color:#A8B3AE">{{ t.teams.sub }}</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+      <sc-for list="{{ teams }}" as="tm" hint-placeholder-count="3">
+        <a href="{{ tm.href }}" data-reveal data-reveal-delay="{{ tm.delay }}" style="display:flex;flex-direction:column;gap:18px;min-height:280px;padding:28px;border-radius:24px;text-decoration:none;color:#F2F5F3;background: {{ tm.bg }};border:1px solid rgba(255,255,255,.08);transition:transform .35s,box-shadow .35s" style-hover="transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(0,189,128,.4);color:#fff">
+          <div style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#00BD80"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ tm.icon }}"></path></svg></div>
+          <div style="flex:1"></div>
+          <div><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:28px;letter-spacing:-.02em;line-height:1.1">{{ tm.title }}</div><p style="margin:10px 0 0;font-size:15px;color:#C9D1CD;line-height:1.55">{{ tm.desc }}</p></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:12.5px;font-weight:700;color:#7FE3C0"><span>{{ tm.stat }}</span><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="customers" style="max-width:1200px;margin:0 auto;padding:120px 24px 0">
+    <div data-reveal style="max-width:620px;display:flex;flex-direction:column;gap:14px;margin-bottom:44px"><div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#00BD80">{{ t.customers.eyebrow }}</div><h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.02;letter-spacing:-.03em">{{ t.customers.title }}</h2><p style="margin:0;font-size:17px;color:#A8B3AE">{{ t.customers.sub }}</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+      <sc-for list="{{ stories }}" as="s" hint-placeholder-count="3">
+        <a href="Customers.dc.html" data-reveal data-reveal-delay="{{ s.delay }}" style="display:flex;flex-direction:column;gap:14px;padding:28px;border-radius:24px;text-decoration:none;color:#F2F5F3;background:#121816;border:1px solid rgba(255,255,255,.08);transition:transform .35s,border-color .35s" style-hover="transform:translateY(-6px);border-color:rgba(0,189,128,.45);color:#fff">
+          <div style="font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:#7F8B86">{{ s.sector }}</div>
+          <div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:64px;line-height:1;letter-spacing:-.04em;color:#00BD80">{{ s.value }}</div>
+          <div style="font-weight:800;font-size:17px">{{ s.label }}</div>
+          <p style="margin:0;font-size:14.5px;color:#A8B3AE;line-height:1.55">{{ s.desc }}</p>
+        </a>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-top:18px">
+      <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="2">
+        <figure data-reveal data-reveal-delay="{{ q.delay }}" style="margin:0;padding:30px;border-radius:24px;background:linear-gradient(160deg,rgba(0,189,128,.12),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:20px">
+          <svg width="30" height="24" viewBox="0 0 30 24" fill="#00BD80"><path d="M0 24V14.4C0 6.4 4.4 1.6 12 0l1.6 3.2C9.6 4.8 7.6 7.6 7.2 11.2H12V24H0zm18 0V14.4C18 6.4 22.4 1.6 30 0l1.6 3.2c-4 1.6-6 4.4-6.4 8H30V24H18z"></path></svg>
+          <blockquote style="margin:0;font-size:18px;line-height:1.55;color:#E6EBE8;text-wrap:pretty">{{ q.text }}</blockquote>
+          <figcaption style="display:flex;align-items:center;gap:12px;font-size:14px"><span style="width:38px;height:38px;border-radius:50%;background:#0B3D2E;display:grid;place-items:center;font-weight:800;color:#7FE3C0;font-size:13px">{{ q.initials }}</span><div><div style="font-weight:800">{{ q.name }}</div><div style="color:#7F8B86;font-size:13px">{{ q.role }}</div></div></figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:120px 24px 120px">
+    <div data-reveal style="position:relative;overflow:hidden;border-radius:32px;padding:clamp(40px,6vw,80px);background:#0B3D2E;border:1px solid rgba(0,189,128,.35)">
+      <div style="position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.5),transparent 65%);filter:blur(20px);animation:dcOrb 10s ease-in-out infinite"></div>
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 20% 50%,#000,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 20% 50%,#000,transparent 70%)"></div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:18px"><h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(32px,4vw,52px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance">{{ t.cta.title }}</h2><p style="margin:0;font-size:17px;color:#BFE9D8;max-width:520px">{{ t.cta.sub }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px"><a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 24px;border-radius:999px;background:#00BD80;color:#062B20;text-decoration:none;font-weight:800;font-size:15.5px;transition:transform .25s" style-hover="transform:translateY(-2px);color:#062B20">{{ t.cta.button }}<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><a href="Contact.dc.html" style="display:inline-flex;align-items:center;height:54px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;font-weight:700;font-size:15.5px" style-hover="background:rgba(255,255,255,.08);color:#fff">{{ t.cta.secondary }}</a></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ ctaBullets }}" as="b" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-weight:700;font-size:15px"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:#00BD80;display:grid;place-items:center"><svg width="12" height="12" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#062B20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>{{ b.text }}</div></sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" theme="dark" lang="{{ lang }}" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;autoRotate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const ICONS = [
+  'M3 5h18v11H3zM8 21h8M12 16v5',
+  'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+  'M21 12a8 8 0 0 1-8 8H8l-5 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8zM8 12h8M8 9h5',
+];
+const TEAM_BG = ['linear-gradient(160deg,#16352A,#121816)', 'linear-gradient(160deg,#0B3D2E,#121816)', 'linear-gradient(160deg,#1B5C46,#121816)'];
+const TEAM_HREF = ['Solutions.dc.html#it', 'Solutions.dc.html#hr', 'Solutions.dc.html#cx'];
+class Component extends DCLogic {
+  state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, tab: 0, prog: 0, paused: false, count: 0 };
+  componentDidMount(){
+    import('./copy.js').then(m => { this.mod = m; this.setState({ copy: m.COPY, stored: m.getLang() }); });
+    import('./site.js').then(s => { this.site = s; this.cleanups = [ s.setupReveal(), s.setupProgress(), s.setupCounter('[data-counter]', p => this.setState({ count: p })) ]; });
+    this.onResize = () => { const n = window.innerWidth < 1000; if (n !== this.state.narrow) this.setState({ narrow: n }); };
+    window.addEventListener('resize', this.onResize); this.onResize();
+    this.timer = setInterval(() => {
+      if (this.state.paused || this.props.autoRotate === false) return;
+      this.setState(s => s.prog >= 100 ? { prog: 0, tab: (s.tab + 1) % 4 } : { prog: s.prog + 100 / 70 });
+    }, 100);
+  }
+  componentWillUnmount(){ clearInterval(this.timer); window.removeEventListener('resize', this.onResize); (this.cleanups || []).forEach(f => f && f()); }
+  lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
+  renderVals(){
+    const lang = this.lang(), C = this.state.copy, t = C ? C[lang] : null;
+    const E = { hero:{}, modules:{}, outcomes:{}, teams:{}, customers:{}, cta:{} };
+    const tt = t || E;
+    const { tab, prog, count } = this.state;
+    const setLang = l => { this.setState({ lang: l }); if (this.mod) this.mod.setLangStored(l); };
+    const tabsSrc = (t && t.modules.tabs) || [];
+    return {
+      t: tt, lang, setLang,
+      chip0: (t && t.hero.chips[0]) || '', chip1: (t && t.hero.chips[1]) || '', chip2: (t && t.hero.chips[2]) || '',
+      marquee: t ? [...t.sectors, ...t.sectors].map(s => ({ label: s })) : [],
+      metrics: t ? t.metrics.map((m, i) => ({ ...m, shown: Math.round(m.value * count), delay: i * 90 })) : [],
+      tabs: tabsSrc.map((tb, i) => ({ ...tb, num: '0' + (i + 1), active: i === tab, select: () => this.setState({ tab: i, prog: 0 }),
+        bg: i === tab ? '#121816' : 'transparent', border: i === tab ? 'rgba(0,189,128,.4)' : 'rgba(255,255,255,.07)',
+        numBg: i === tab ? '#00BD80' : 'rgba(255,255,255,.06)', numFg: i === tab ? '#062B20' : '#A8B3AE' })),
+      modCols: this.state.narrow ? 'minmax(0,1fr)' : 'minmax(260px,340px) minmax(0,1fr)',
+      progress: prog + '%', isTab0: tab === 0, isTab1: tab === 1, isTab2: tab === 2, isTab3: tab === 3,
+      bullets: tabsSrc[tab] ? tabsSrc[tab].bullets.map(b => ({ text: b })) : [],
+      more: t ? t.modules.more.map(m => ({ label: m })) : [],
+      pause: () => this.setState({ paused: true }), resume: () => this.setState({ paused: false }),
+      pillars: t ? t.outcomes.pillars.map((p, i) => ({ ...p, delay: i * 110, items: p.items.map(it => ({ title: it[0], desc: it[1] })) })) : [],
+      teams: t ? t.teams.items.map((tm, i) => ({ ...tm, icon: ICONS[i], bg: TEAM_BG[i], href: TEAM_HREF[i], delay: i * 110 })) : [],
+      stories: t ? t.customers.stories.map((s, i) => ({ ...s, delay: i * 110 })) : [],
+      quotes: t ? t.customers.quotes.map((q, i) => ({ ...q, delay: i * 120, initials: q.name.split(' ').map(x => x[0]).join('').replace('.', '') })) : [],
+      ctaBullets: t ? t.cta.bullets.map(b => ({ text: b })) : [],
+      heroMove: e => { if (this.site) this.site.parallaxMove(e, e.currentTarget); },
+      heroLeave: e => { if (this.site) this.site.parallaxReset(e.currentTarget); },
+    };
+  }
+}
+</script>
+</body>
+</html>

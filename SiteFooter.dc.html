@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<script type="module">import * as m from './copy.js'; window.DCASE_COPY = m.COPY; window.DCASE_LANG = m.getLang();</script>
+</helmet>
+<footer style="width:100%;font-family:Manrope,system-ui,sans-serif;font-size:14px;border-top:1px solid {{ border }};background: {{ bg }};color: {{ fg }}">
+  <div style="max-width:1200px;margin:0 auto;padding:64px 24px 28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px 32px">
+      <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:18px;max-width:360px">
+        <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}"><img src="assets/dcase-logo-dark.png" alt="dcase" style="height:34px;width:auto;display:block;align-self:flex-start"></sc-if>
+        <sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><img src="assets/dcase-logo.png" alt="dcase" style="height:34px;width:auto;display:block;align-self:flex-start"></sc-if>
+        <p style="margin:0;font-size:15px;line-height:1.55;color: {{ muted }}">{{ f.tagline }}</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;font-size:13px;line-height:1.5">
+          <div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color: {{ muted }}">{{ f.hq }}</div><div style="font-weight:600">{{ f.hqv }}</div></div>
+          <div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color: {{ muted }}">{{ f.office }}</div><div style="font-weight:600">{{ f.officev }}</div></div>
+          <a href="mailto:info@dcase.com" style="font-weight:700;text-decoration:none;color:#00BD80">{{ f.email }}</a>
+          <a href="tel:+902164554410" style="font-weight:700;text-decoration:none;color: {{ fg }}">{{ f.phone }}</a>
+        </div>
+      </div>
+      <sc-for list="{{ cols }}" as="c" hint-placeholder-count="4">
+        <div style="min-width:0">
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:14px;color: {{ muted }}">{{ c.heading }}</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="5"><a href="{{ l.href }}" style="text-decoration:none;font-size:13.5px;font-weight:600;transition:color .15s;color: {{ fg }}" style-hover="color:#00BD80">{{ l.label }}</a></sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:56px;padding-top:22px;border-top:1px solid {{ border }};font-size:12.5px;color: {{ muted }}">
+      <span>{{ f.rights }}</span>
+      <div style="flex:1"></div>
+      <div style="display:flex;gap:18px"><sc-for list="{{ legal }}" as="l" hint-placeholder-count="3"><a href="#" style="text-decoration:none;font-weight:600;color: {{ muted }}" style-hover="color:#00BD80">{{ l.label }}</a></sc-for></div>
+      <div style="display:flex;gap:10px">
+        <a href="#" aria-label="LinkedIn" style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center;text-decoration:none;border:1px solid {{ border }};color: {{ fg }}" style-hover="border-color:#00BD80;color:#00BD80"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.44 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 6.99V22h-4.56v-6.62c0-1.58-.03-3.61-2.2-3.61-2.2 0-2.54 1.72-2.54 3.5V22H7.66V8z"></path></svg></a>
+        <a href="#" aria-label="Instagram" style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center;text-decoration:none;border:1px solid {{ border }};color: {{ fg }}" style-hover="border-color:#00BD80;color:#00BD80"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg></a>
+        <a href="#" aria-label="X" style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center;text-decoration:none;border:1px solid {{ border }};color: {{ fg }}" style-hover="border-color:#00BD80;color:#00BD80"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.2L4.5 22H1.4l8.1-9.3L.7 2h7.2l5 6.6L18.9 2zm-1.2 18.1h1.7L6.4 3.8H4.6l13.1 16.3z"></path></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:520},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;tsType&quot;:&quot;'light' | 'dark'&quot;}}">
+class Component extends DCLogic {
+  state = { copy: window.DCASE_COPY || null };
+  componentDidMount(){ import('./copy.js').then(m => this.setState({ copy: m.COPY })); }
+  renderVals(){
+    const lang = this.props.lang === 'tr' ? 'tr' : 'en', dark = this.props.theme === 'dark';
+    const f = this.state.copy ? this.state.copy[lang].footer : { cols: [], legal: [] };
+    return {
+      f, cols: (f.cols || []).map(c => ({ heading: c.heading, links: c.links.map(l => ({ label: l[0], href: l[1] })) })), legal: (f.legal || []).map(l => ({ label: l })),
+      isDark: dark, isLight: !dark,
+      bg: dark ? '#0B0F0E' : '#F4F6F5', fg: dark ? '#F2F5F3' : '#141A17', muted: dark ? '#A8B3AE' : '#5A6661', border: dark ? 'rgba(255,255,255,.1)' : 'rgba(20,26,23,.1)',
+    };
+  }
+}
+</script>
+</body>
+</html>
