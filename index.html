@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&family=Quicksand:wght@700&family=Outfit:wght@700&family=Urbanist:wght@800&family=Nunito:wght@800&family=Sora:wght@700&family=Lexend:wght@700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; background:#FAFAF7; }
 a { color:#0B6B47; } a:hover { color:#00BD80; }
@@ -47,6 +47,22 @@ a { color:#0B6B47; } a:hover { color:#00BD80; }
         </a>
       </sc-for>
     </div>
+    <section id="logo" style="margin-top:96px;padding-top:56px;border-top:1px solid rgba(20,26,23,.1)">
+      <div style="max-width:760px;display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0B6B47">Logo · marka yazısı</div>
+        <h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(30px,3.6vw,44px);line-height:1;letter-spacing:-.03em">“DCase” için font alternatifleri</h2>
+        <p style="margin:0;font-size:16px;color:#4B5651">İkon sabit; yalnızca yazı değişiyor. Her seçenek açık ve koyu zeminde.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px;margin-top:32px">
+        <sc-for list="{{ fonts }}" as="f" hint-placeholder-count="8">
+          <div style="background:#fff;border:1px solid rgba(20,26,23,.1);border-radius:20px;overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(20,26,23,.08)"><div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border-radius:8px;background:#00BD80;color:#062B20;display:grid;place-items:center;font-weight:800;font-size:13px">{{ f.n }}</span><span style="font-weight:800;font-size:14.5px">{{ f.name }}</span></div><span style="font-size:12px;color:#6F7B76;text-align:right">{{ f.note }}</span></div>
+            <div style="padding:22px;display:flex;align-items:center;justify-content:center;background:#fff"><div style="display:inline-flex;align-items:center;gap:11px"><img src="assets/dcase-icon.png" alt="" style="height:54px;width:auto;display:block"><span style="font-weight: {{ f.weight }};font-size:36px;line-height:1;letter-spacing: {{ f.ls }};color:#333333;padding-bottom:3px;font-family: {{ f.family }}">DCase</span></div></div>
+            <div style="padding:22px;display:flex;align-items:center;justify-content:center;background:#0B0F0E"><div style="display:inline-flex;align-items:center;gap:11px"><img src="assets/dcase-icon.png" alt="" style="height:54px;width:auto;display:block"><span style="font-weight: {{ f.weight }};font-size:36px;line-height:1;letter-spacing: {{ f.ls }};color:#FFFFFF;padding-bottom:3px;font-family: {{ f.family }}">DCase</span></div></div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
     <div style="margin-top:56px;padding-top:24px;border-top:1px solid rgba(20,26,23,.1);display:flex;flex-wrap:wrap;gap:16px 32px;font-size:13.5px;color:#6F7B76">
       <span>Ortak parçalar: SiteNav · SiteFooter · MockConsole · MockWorkflow · MockSla · MockAnalytics · copy.js (EN/TR)</span>
       <span style="flex:1"></span>
@@ -61,6 +77,16 @@ const CARDS = [
   { letter:'B', title:'Editoryal', theme:'A\u00e7\u0131k', href:'home-b.dc.html', bg:'#FAFAF7', desc:'S\u0131cak a\u00e7\u0131k zemin, dev tipografi, parallax\u2019l\u0131 y\u00fczen UI kartlar\u0131; mod\u00fcller zigzag hik\u00e2ye ak\u0131\u015f\u0131yla anlat\u0131l\u0131r. Kurumsal ve sakin.', tags:['B\u00fcy\u00fck tipografi','Zigzag anlat\u0131m','Parallax'] },
   { letter:'C', title:'Bento', theme:'A\u00e7\u0131k', href:'home-c.dc.html', bg:'#FFFFFF', desc:'Ortalanm\u0131\u015f ba\u015fl\u0131k ve t\u00fcm canl\u0131 mod\u00fcllerin bento \u0131zgaras\u0131; yatay kayd\u0131rmal\u0131 sonu\u00e7 kartlar\u0131, sekmeli ekip paneli. Modern SaaS.', tags:['Bento \u0131zgara','\u00dcr\u00fcn \u00f6nce','Yo\u011fun'] },
 ];
+const FONTS = [
+  { name:'Quicksand', family:"Quicksand, sans-serif", weight:700, ls:'-.01em', note:'Mevcut · orijinale en yakın' },
+  { name:'Outfit', family:"Outfit, sans-serif", weight:700, ls:'-.02em', note:'Geometrik, keskin; modern SaaS' },
+  { name:'Urbanist', family:"Urbanist, sans-serif", weight:800, ls:'-.02em', note:'Hafif yuvarlak uçlar; dengeli' },
+  { name:'Manrope', family:"Manrope, sans-serif", weight:800, ls:'-.03em', note:'Sitenin gövde fontu' },
+  { name:'Bricolage Grotesque', family:"'Bricolage Grotesque', sans-serif", weight:700, ls:'-.03em', note:'Sitenin başlık fontu' },
+  { name:'Nunito', family:"Nunito, sans-serif", weight:800, ls:'-.02em', note:'Yuvarlak, sıcak' },
+  { name:'Sora', family:"Sora, sans-serif", weight:700, ls:'-.03em', note:'Teknik geometrik' },
+  { name:'Lexend', family:"Lexend, sans-serif", weight:700, ls:'-.02em', note:'Sade, yüksek okunabilirlik' },
+];
 class Component extends DCLogic {
   state = { w: 400 };
   componentDidMount(){
@@ -70,7 +96,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount(){ if (this.ro) this.ro.disconnect(); }
   renderVals(){
-    return { scale: 'scale(' + (this.state.w / 1440).toFixed(4) + ')', cards: CARDS.map((c, i) => ({ ...c, delay: (i * 110) + 'ms', tags: c.tags.map(t => ({ label: t })) })) };
+    return { fonts: FONTS.map((f, i) => ({ ...f, n: i + 1 })), scale: 'scale(' + (this.state.w / 1440).toFixed(4) + ')', cards: CARDS.map((c, i) => ({ ...c, delay: (i * 110) + 'ms', tags: c.tags.map(t => ({ label: t })) })) };
   }
 }
 </script>
