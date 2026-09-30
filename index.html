@@ -190,7 +190,7 @@ class Component extends DCLogic {
   state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, tab: 0, prog: 0, paused: false, count: 0 };
   componentDidMount(){
     import('./copy.js').then(m => { this.mod = m; this.setState({ copy: m.COPY, stored: m.getLang() }); });
-    import('./site.js').then(s => { this.site = s; this.cleanups = [ s.setupReveal(), s.setupProgress(), s.setupCounter('[data-counter]', p => this.setState({ count: p })) ]; });
+    import('./site.js').then(s => { this.site = s; this.cleanups = [ s.setupAnchors(), s.setupReveal(), s.setupProgress(), s.setupCounter('[data-counter]', p => this.setState({ count: p })) ]; });
     this.onResize = () => { const n = window.innerWidth < 1000; if (n !== this.state.narrow) this.setState({ narrow: n }); };
     window.addEventListener('resize', this.onResize); this.onResize();
     this.timer = setInterval(() => {

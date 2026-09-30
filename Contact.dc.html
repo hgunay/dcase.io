@@ -74,7 +74,7 @@ input::placeholder, textarea::placeholder { color:#5F6B66; }
 <script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;,&quot;section&quot;:&quot;Content&quot;}}">
 class Component extends DCLogic {
   state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null, sent: false };
-  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupProgress()]; }); }); }
+  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupAnchors(), s.setupProgress()]; }); }); }
   componentWillUnmount(){ (this.cleanups || []).forEach(f => f && f()); }
   lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
   renderVals(){

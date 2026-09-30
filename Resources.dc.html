@@ -70,7 +70,7 @@ input { font-family:inherit; } input::placeholder { color:#5F6B66; }
 const ICONS = ['M4 4h16v16H4zM8 9h8M8 13h8M8 17h5','M3 7h18M3 12h18M3 17h12','M8 21h8M12 17v4M4 3h16v14H4zM8 13l3-3 2 2 3-4','M5 3l14 9-14 9z'];
 class Component extends DCLogic {
   state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null, sub: false };
-  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupReveal(), s.setupProgress()]; }); }); }
+  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupAnchors(), s.setupReveal(), s.setupProgress()]; }); }); }
   componentWillUnmount(){ (this.cleanups || []).forEach(f => f && f()); }
   lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
   renderVals(){

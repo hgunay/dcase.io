@@ -15,7 +15,7 @@ en: {
     ],
     menus: {
       product: [
-        { heading:'Manage', links:[ ['Ticket & Incident Management','Fast-track resolution with smart automation', P.product+'#tickets'], ['SLA & OLA Management','Automated monitoring and escalation', P.product+'#sla'], ['Asset & Configuration','One source of truth for every dependency', P.solutions+'#assets'] ] },
+        { heading:'Manage', links:[ ['Ticket & Incident Management','Fast-track resolution with smart automation', P.product+'#tickets'], ['SLA & OLA Management','Automated monitoring and escalation', P.product+'#sla'], ['Asset & Configuration','One source of truth for every dependency', P.product+'#assets'] ] },
         { heading:'Automate', links:[ ['Workflow Automation','BPMN-based, rule-driven processes', P.product+'#workflow'], ['Form & Template Designer','No-code forms and dynamic fields', P.product+'#forms'], ['API Integrations','REST API, connectors and webhooks', P.product+'#api'] ] },
         { heading:'Measure & secure', links:[ ['Reporting & Analytics','Dashboards, trends and scheduled reports', P.product+'#analytics'], ['Role-Based Access','Multi-tenant RBAC and audit logging', P.product+'#access'] ] },
       ],
@@ -117,7 +117,7 @@ tr: {
     ],
     menus: {
       product: [
-        { heading:'Yönetin', links:[ ['Bilet ve Olay Yönetimi','Akıllı otomasyonla hızlı çözüm', P.product+'#tickets'], ['SLA ve OLA Yönetimi','Otomatik izleme ve eskalasyon', P.product+'#sla'], ['Varlık ve Konfigürasyon','Her bağımlılık için tek doğru kaynak', P.solutions+'#assets'] ] },
+        { heading:'Yönetin', links:[ ['Bilet ve Olay Yönetimi','Akıllı otomasyonla hızlı çözüm', P.product+'#tickets'], ['SLA ve OLA Yönetimi','Otomatik izleme ve eskalasyon', P.product+'#sla'], ['Varlık ve Konfigürasyon','Her bağımlılık için tek doğru kaynak', P.product+'#assets'] ] },
         { heading:'Otomatikleştirin', links:[ ['İş Akışı Otomasyonu','BPMN tabanlı, kural güdümlü süreçler', P.product+'#workflow'], ['Form ve Şablon Tasarımcısı','Kodsuz formlar, dinamik alanlar', P.product+'#forms'], ['API Entegrasyonları','REST API, bağlayıcılar ve webhook\u2019lar', P.product+'#api'] ] },
         { heading:'Ölçün ve koruyun', links:[ ['Raporlama ve Analitik','Panolar, trendler, zamanlanmış raporlar', P.product+'#analytics'], ['Rol Tabanlı Erişim','Çok kiracılı RBAC ve denetim günlüğü', P.product+'#access'] ] },
       ],

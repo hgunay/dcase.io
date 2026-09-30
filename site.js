@@ -61,3 +61,24 @@ export function parallaxMove(e, container) {
 export function parallaxReset(container) {
   container.querySelectorAll('[data-depth]').forEach(el => { el.style.transform = 'translate3d(0,0,0)'; });
 }
+
+// Deterministic landing position: pages open at the very top, hash links land below the fixed nav —
+// re-applied a few times while async copy / mocks change the layout, unless the user has scrolled.
+export function setupAnchors(offset = 96) {
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  let userScrolled = false;
+  const mark = () => { userScrolled = true; };
+  ['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, mark, { passive: true }));
+  const go = (force) => {
+    if (userScrolled && !force) return;
+    const id = decodeURIComponent((location.hash || '').slice(1));
+    const el = id ? document.getElementById(id) : null;
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: force ? 'smooth' : 'auto' });
+    else if (!force) window.scrollTo(0, 0);
+  };
+  go(false);
+  const timers = [120, 400, 900, 1600, 2600].map(t => setTimeout(() => go(false), t));
+  const onHash = () => { userScrolled = false; go(true); };
+  window.addEventListener('hashchange', onHash);
+  return () => { timers.forEach(clearTimeout); window.removeEventListener('hashchange', onHash); ['wheel', 'touchstart', 'keydown'].forEach(ev => window.removeEventListener(ev, mark)); };
+}

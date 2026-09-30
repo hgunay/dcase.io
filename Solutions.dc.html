@@ -25,11 +25,11 @@ a { color:#00BD80; } a:hover { color:#5FE0B4; }
 
   <section style="position:relative;padding:150px 24px 64px;overflow:hidden">
     <div style="position:absolute;top:-160px;left:-120px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.22),rgba(0,189,128,0) 65%);filter:blur(30px);animation:dcOrb 12s ease-in-out infinite"></div>
-    <div style="position:relative;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:22px;max-width:760px">
+    <div style="position:relative;max-width:1200px;margin:0 auto"><div style="display:flex;flex-direction:column;gap:22px;max-width:760px">
       <div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 10px;border-radius:999px;border:1px solid rgba(0,189,128,.35);background:rgba(0,189,128,.1);font-size:12.5px;font-weight:700;color:#7FE3C0;animation:dcRise .8s ease-out both"><span style="width:8px;height:8px;border-radius:50%;background:#00BD80;animation:dcPulse 2s infinite"></span>{{ p.eyebrow }}</div>
       <h1 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(44px,6vw,80px);line-height:.98;letter-spacing:-.035em;animation:dcRise .9s .1s ease-out both">{{ p.title1 }} <span style="color:#00BD80">{{ p.title2 }}</span></h1>
       <p style="margin:0;font-size:18px;line-height:1.6;color:#A8B3AE;text-wrap:pretty;animation:dcRise .9s .2s ease-out both">{{ p.sub }}</p>
-    </div>
+    </div></div>
   </section>
 
   <section style="max-width:1200px;margin:0 auto;padding:24px 24px 0">
@@ -77,7 +77,7 @@ const ICONS = ['M3 5h18v11H3zM8 21h8M12 16v5','M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0
 const BG = ['linear-gradient(160deg,#16352A,#121816)','linear-gradient(160deg,#0B3D2E,#121816)','linear-gradient(160deg,#1B5C46,#121816)'];
 class Component extends DCLogic {
   state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null };
-  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupReveal(), s.setupProgress()]; }); }); }
+  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupAnchors(), s.setupReveal(), s.setupProgress()]; }); }); }
   componentWillUnmount(){ (this.cleanups || []).forEach(f => f && f()); }
   lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
   renderVals(){
