@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#0B0F0E; }
+a { color:#00BD80; } a:hover { color:#5FE0B4; }
+@keyframes dcRise { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+@keyframes dcPulse { 0%,100% { box-shadow:0 0 0 0 rgba(0,189,128,.55); } 70% { box-shadow:0 0 0 10px rgba(0,189,128,0); } }
+@keyframes dcOrb { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-40px,30px) scale(1.15); } }
+@keyframes dcMarquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+</style>
+<script type="module">import * as m from './copy.js'; window.DCASE_COPY = m.COPY; window.DCASE_LANG = m.getLang();</script>
+</helmet>
+<div style="background:#0B0F0E;color:#F2F5F3;font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:clip;min-height:100vh;-webkit-font-smoothing:antialiased">
+  <div data-progress style="position:fixed;top:0;left:0;height:2px;width:0;background:#00BD80;z-index:60"></div>
+  <div style="position:fixed;top:0;left:0;right:0;z-index:50"><dc-import name="SiteNav" theme="dark" lang="{{ lang }}" on-lang="{{ setLang }}" hint-size="100%,72px"></dc-import></div>
+
+  <section style="position:relative;padding:150px 24px 56px;overflow:hidden">
+    <div style="position:absolute;top:-160px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.24),rgba(0,189,128,0) 65%);filter:blur(30px);animation:dcOrb 12s ease-in-out infinite"></div>
+    <div style="position:relative;max-width:760px;margin:0 auto 0 0;padding-left:max(0px,calc((100% - 1200px)/2));display:flex;flex-direction:column;gap:22px">
+      <div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 10px;border-radius:999px;border:1px solid rgba(0,189,128,.35);background:rgba(0,189,128,.1);font-size:12.5px;font-weight:700;color:#7FE3C0;animation:dcRise .8s ease-out both"><span style="width:8px;height:8px;border-radius:50%;background:#00BD80;animation:dcPulse 2s infinite"></span>{{ p.eyebrow }}</div>
+      <h1 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(42px,5.6vw,74px);line-height:.98;letter-spacing:-.035em;text-wrap:balance;animation:dcRise .9s .1s ease-out both">{{ p.title1 }}<br><span style="color:#00BD80">{{ p.title2 }}</span></h1>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:#A8B3AE;text-wrap:pretty;animation:dcRise .9s .2s ease-out both">{{ p.sub }}</p>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:18px 0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">
+    <div style="display:flex;gap:14px;width:max-content;animation:dcMarquee 36s linear infinite"><sc-for list="{{ marquee }}" as="s" hint-placeholder-count="16"><div style="display:flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#A8B3AE;font-size:13px;font-weight:700;white-space:nowrap"><span style="width:6px;height:6px;border-radius:50%;background:#00BD80"></span>{{ s.label }}</div></sc-for></div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:72px 24px 0;display:grid;grid-template-columns: {{ cols }};gap:48px;align-items:start">
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <nav style="position:sticky;top:104px;display:flex;flex-direction:column;gap:4px">
+      <sc-for list="{{ index }}" as="ix" hint-placeholder-count="5"><a href="{{ ix.href }}" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;text-decoration:none;color:#A8B3AE;font-weight:700;font-size:14px;transition:background .2s,color .2s" style-hover="background:rgba(255,255,255,.06);color:#fff"><span style="font-family:'Bricolage Grotesque',Manrope,sans-serif;color:#00BD80;font-size:12px">{{ ix.n }}</span>{{ ix.title }}</a></sc-for>
+    </nav>
+    </sc-if>
+    <div style="min-width:0;display:flex;flex-direction:column;gap:20px">
+      <sc-for list="{{ items }}" as="it" hint-placeholder-count="5">
+        <article id="{{ it.id }}" data-reveal style="scroll-margin-top:100px;position:relative;overflow:hidden;padding:clamp(28px,4vw,44px);border-radius:28px;background:#121816;border:1px solid rgba(255,255,255,.08)">
+          <div style="position:absolute;top:-80px;right:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.2),transparent 65%)"></div>
+          <div style="position:relative;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:center;gap:14px"><span style="width:44px;height:44px;border-radius:12px;background:rgba(0,189,128,.14);display:grid;place-items:center;color:#00BD80"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ it.icon }}"></path></svg></span><span style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#6F7B76;letter-spacing:.08em">{{ it.n }}</span></div>
+            <h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.4vw,42px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance">{{ it.title }}</h2>
+            <p style="margin:0;font-size:16.5px;color:#C9D1CD;line-height:1.6;max-width:720px">{{ it.intro }}</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px;margin-top:6px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08)">
+              <div><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#00BD80;margin-bottom:12px">{{ p.solutionLabel }}</div><div style="display:flex;flex-direction:column;gap:10px"><sc-for list="{{ it.points }}" as="pt" hint-placeholder-count="4"><div style="display:flex;gap:10px;font-size:14.5px;color:#E6EBE8;line-height:1.5"><span style="flex:none;width:18px;height:18px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>{{ pt.text }}</div></sc-for></div></div>
+              <div style="padding:22px;border-radius:18px;background:#0B3D2E;border:1px solid rgba(0,189,128,.3);align-self:start"><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#7FE3C0;margin-bottom:10px">{{ p.impactLabel }}</div><p style="margin:0;font-size:15.5px;font-weight:600;line-height:1.55;color:#fff">{{ it.impact }}</p></div>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:110px 24px 120px">
+    <div data-reveal style="position:relative;overflow:hidden;border-radius:32px;padding:clamp(40px,6vw,72px);background:#0B3D2E;border:1px solid rgba(0,189,128,.35);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px">
+      <div style="position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.5),transparent 65%);filter:blur(20px);animation:dcOrb 10s ease-in-out infinite"></div>
+      <div style="position:relative;max-width:620px;display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,48px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance">{{ cta.title }}</h2><p style="margin:0;font-size:16px;color:#BFE9D8">{{ cta.sub }}</p></div>
+      <a href="Contact.dc.html" style="position:relative;display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 24px;border-radius:999px;background:#00BD80;color:#062B20;text-decoration:none;font-weight:800;font-size:15.5px" style-hover="transform:translateY(-2px);color:#062B20">{{ cta.button }}<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" theme="dark" lang="{{ lang }}" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+const ICONS = [
+  'M12 3v18M5 8a10 10 0 0 1 14 0M8 11a5.5 5.5 0 0 1 8 0M9 21h6',
+  'M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6M9 11h.01M15 11h.01',
+  'M3 21h18M4 21V10h16v11M12 3l8 5H4l8-5M8 14v4M12 14v4M16 14v4',
+  'M4 5h16v10H4zM12 15v4M8 19h8M7 9h5M7 12h8',
+  'M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1 3 3 6 3s6-2 6-3v-5',
+];
+class Component extends DCLogic {
+  state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null, narrow: false };
+  componentDidMount(){
+    Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupReveal(), s.setupProgress()]; }); });
+    this.onResize = () => { const n = window.innerWidth < 900; if (n !== this.state.narrow) this.setState({ narrow: n }); }; window.addEventListener('resize', this.onResize); this.onResize();
+  }
+  componentWillUnmount(){ window.removeEventListener('resize', this.onResize); (this.cleanups || []).forEach(f => f && f()); }
+  lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
+  renderVals(){
+    const lang = this.lang(), pc = this.state.pc, p = pc ? pc[lang].industries : { items: [] }, C = this.state.copy;
+    const items = (p.items || []).map((it, i) => ({ ...it, n: String(i + 1).padStart(2, '0'), icon: ICONS[i], points: it.points.map(x => ({ text: x })) }));
+    return {
+      lang, setLang: l => { this.setState({ lang: l }); if (this.mod) this.mod.setLangStored(l); }, p, cta: C ? C[lang].cta : {},
+      items, index: items.map(it => ({ n: it.n, title: it.title, href: '#' + it.id })),
+      marquee: C ? [...C[lang].sectors, ...C[lang].sectors].map(s => ({ label: s })) : [],
+      wide: !this.state.narrow, cols: this.state.narrow ? 'minmax(0,1fr)' : '260px minmax(0,1fr)',
+    };
+  }
+}
+</script>
+</body>
+</html>

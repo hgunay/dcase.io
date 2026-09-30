@@ -8,11 +8,11 @@ Statik yapı; ek bir derleme adımı yok. GitHub Pages'te doğrudan yayınlanır
 3. Site adresi: `https://<kullanici>.github.io/<depo>/` → `index.html` seçici sayfayı açar.
 
 ## Dosyalar
-- `index.html` — üç ana sayfa yönünü canlı önizlemeyle listeleyen seçici.
-- `home-a.dc.html` · `home-b.dc.html` · `home-c.dc.html` — Komuta Merkezi (koyu) · Editoryal · Bento.
+- `index.html` — ana sayfa (koyu tema, seçilen yön).
+- `Product`, `Solutions`, `Industries`, `Customers`, `About`, `Contact`, `Resources` (`.dc.html`) — iç sayfalar.
 - `SiteNav.dc.html`, `SiteFooter.dc.html` — ortak üst menü (mega menü, EN/TR anahtarı) ve alt bilgi.
 - `MockConsole`, `MockWorkflow`, `MockSla`, `MockAnalytics` (`.dc.html`) — canlı ürün ekranı bileşenleri.
-- `copy.js` — tüm EN/TR metinler tek yerde. `site.js` — scroll-reveal, sayaç, parallax yardımcıları.
+- `copy.js` (ana sayfa, menü, footer) ve `copy-pages.js` (iç sayfalar) — tüm EN/TR metinler. `site.js` — scroll-reveal, sayaç, parallax yardımcıları.
 - `support.js` — bileşen çalışma zamanı (React'i CDN'den yükler). `assets/` — logo dosyaları.
 
 Dil tercihi tarayıcıda saklanır (`localStorage: dcase_lang`).

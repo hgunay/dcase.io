@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#0B0F0E; }
+a { color:#00BD80; } a:hover { color:#5FE0B4; }
+@keyframes dcRise { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+@keyframes dcPulse { 0%,100% { box-shadow:0 0 0 0 rgba(0,189,128,.55); } 70% { box-shadow:0 0 0 10px rgba(0,189,128,0); } }
+@keyframes dcOrb { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-40px,30px) scale(1.15); } }
+@keyframes dcRowIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:none; } }
+@keyframes dcFlow { 0% { transform:translateX(-10px); opacity:0; } 50% { opacity:1; } 100% { transform:translateX(10px); opacity:0; } }
+</style>
+<script type="module">import * as m from './copy.js'; window.DCASE_COPY = m.COPY; window.DCASE_LANG = m.getLang();</script>
+</helmet>
+<div style="background:#0B0F0E;color:#F2F5F3;font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:clip;min-height:100vh;-webkit-font-smoothing:antialiased">
+  <div data-progress style="position:fixed;top:0;left:0;height:2px;width:0;background:#00BD80;z-index:60"></div>
+  <div style="position:fixed;top:0;left:0;right:0;z-index:50"><dc-import name="SiteNav" theme="dark" lang="{{ lang }}" on-lang="{{ setLang }}" hint-size="100%,72px"></dc-import></div>
+
+  <section style="position:relative;padding:150px 24px 72px;overflow:hidden">
+    <div style="position:absolute;top:-160px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.26),rgba(0,189,128,0) 65%);filter:blur(30px);animation:dcOrb 12s ease-in-out infinite"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px 64px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:640px">
+        <div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 10px;border-radius:999px;border:1px solid rgba(0,189,128,.35);background:rgba(0,189,128,.1);font-size:12.5px;font-weight:700;color:#7FE3C0;animation:dcRise .8s ease-out both"><span style="width:8px;height:8px;border-radius:50%;background:#00BD80;animation:dcPulse 2s infinite"></span>{{ p.eyebrow }}</div>
+        <h1 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(42px,5.6vw,72px);line-height:.98;letter-spacing:-.035em;text-wrap:balance;animation:dcRise .9s .1s ease-out both">{{ p.title1 }}<br><span style="color:#00BD80">{{ p.title2 }}</span></h1>
+        <p style="margin:0;font-size:18px;line-height:1.6;color:#A8B3AE;text-wrap:pretty;animation:dcRise .9s .2s ease-out both">{{ p.sub }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;animation:dcRise .9s .3s ease-out both">
+          <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:999px;background:#00BD80;color:#062B20;text-decoration:none;font-weight:800;font-size:15px;box-shadow:0 14px 40px -12px rgba(0,189,128,.75);transition:transform .25s" style-hover="transform:translateY(-2px);color:#062B20">{{ p.primary }}<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <a href="#tickets" style="display:inline-flex;align-items:center;height:52px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:#F2F5F3;text-decoration:none;font-weight:700;font-size:15px" style-hover="background:rgba(255,255,255,.08);color:#fff">{{ p.secondary }}</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;animation:dcRise 1s .35s ease-out both">
+        <sc-for list="{{ moduleIndex }}" as="mi" hint-placeholder-count="7"><a href="{{ mi.href }}" style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:14px;background:#121816;border:1px solid rgba(255,255,255,.08);text-decoration:none;color:#F2F5F3;font-weight:700;font-size:13.5px;transition:border-color .25s,transform .25s" style-hover="border-color:rgba(0,189,128,.5);transform:translateY(-2px);color:#fff"><span style="font-family:'Bricolage Grotesque',Manrope,sans-serif;color:#00BD80;font-size:12px">{{ mi.n }}</span>{{ mi.title }}</a></sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:40px 24px 0">
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08)">
+      <h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,48px);line-height:1.02;letter-spacing:-.03em">{{ p.capsTitle }}</h2>
+      <p style="margin:0;font-size:17px;color:#A8B3AE;max-width:420px">{{ p.capsSub }}</p>
+    </div>
+
+    <div id="tickets" data-reveal style="scroll-margin-top:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:center;padding:80px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div style="display:flex;flex-direction:column;gap:16px"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#00BD80;letter-spacing:.1em">01</div><h3 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.04;letter-spacing:-.03em">{{ m0.title }}</h3><p style="margin:0;font-size:17px;color:#A8B3AE">{{ m0.tag }}</p><div style="display:flex;flex-direction:column;gap:14px;margin-top:8px"><sc-for list="{{ m0.bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:12px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div><div style="font-weight:800;font-size:15px">{{ b.title }}</div><div style="font-size:14px;color:#A8B3AE;margin-top:2px">{{ b.desc }}</div></div></div></sc-for></div></div>
+      <div style="min-width:0"><dc-import name="MockConsole" hint-size="100%,460px"></dc-import></div>
+    </div>
+
+    <div id="workflow" data-reveal style="scroll-margin-top:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:center;padding:80px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div style="min-width:0;order:1"><dc-import name="MockWorkflow" hint-size="100%,460px"></dc-import></div>
+      <div style="display:flex;flex-direction:column;gap:16px;order:2"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#00BD80;letter-spacing:.1em">02</div><h3 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.04;letter-spacing:-.03em">{{ m1.title }}</h3><p style="margin:0;font-size:17px;color:#A8B3AE">{{ m1.tag }}</p><div style="display:flex;flex-direction:column;gap:14px;margin-top:8px"><sc-for list="{{ m1.bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:12px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div><div style="font-weight:800;font-size:15px">{{ b.title }}</div><div style="font-size:14px;color:#A8B3AE;margin-top:2px">{{ b.desc }}</div></div></div></sc-for></div></div>
+    </div>
+
+    <div id="sla" data-reveal style="scroll-margin-top:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:center;padding:80px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div style="display:flex;flex-direction:column;gap:16px"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#00BD80;letter-spacing:.1em">03</div><h3 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.04;letter-spacing:-.03em">{{ m2.title }}</h3><p style="margin:0;font-size:17px;color:#A8B3AE">{{ m2.tag }}</p><div style="display:flex;flex-direction:column;gap:14px;margin-top:8px"><sc-for list="{{ m2.bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:12px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div><div style="font-weight:800;font-size:15px">{{ b.title }}</div><div style="font-size:14px;color:#A8B3AE;margin-top:2px">{{ b.desc }}</div></div></div></sc-for></div></div>
+      <div style="min-width:0"><dc-import name="MockSla" hint-size="100%,460px"></dc-import></div>
+    </div>
+
+    <div id="analytics" data-reveal style="scroll-margin-top:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:center;padding:80px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div style="min-width:0;order:1"><dc-import name="MockAnalytics" hint-size="100%,440px"></dc-import></div>
+      <div style="display:flex;flex-direction:column;gap:16px;order:2"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#00BD80;letter-spacing:.1em">04</div><h3 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.04;letter-spacing:-.03em">{{ m3.title }}</h3><p style="margin:0;font-size:17px;color:#A8B3AE">{{ m3.tag }}</p><div style="display:flex;flex-direction:column;gap:14px;margin-top:8px"><sc-for list="{{ m3.bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:12px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div><div style="font-weight:800;font-size:15px">{{ b.title }}</div><div style="font-size:14px;color:#A8B3AE;margin-top:2px">{{ b.desc }}</div></div></div></sc-for></div></div>
+    </div>
+
+    <div id="forms" data-reveal style="scroll-margin-top:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:center;padding:80px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div style="display:flex;flex-direction:column;gap:16px"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#00BD80;letter-spacing:.1em">05</div><h3 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.04;letter-spacing:-.03em">{{ m4.title }}</h3><p style="margin:0;font-size:17px;color:#A8B3AE">{{ m4.tag }}</p><div style="display:flex;flex-direction:column;gap:14px;margin-top:8px"><sc-for list="{{ m4.bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:12px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div><div style="font-weight:800;font-size:15px">{{ b.title }}</div><div style="font-size:14px;color:#A8B3AE;margin-top:2px">{{ b.desc }}</div></div></div></sc-for></div></div>
+      <div style="min-width:0;background:#fff;border:1px solid #E3E8E5;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(8,30,20,.35);color:#141A17;font-size:12px">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #E9EDEB"><img src="assets/dcase-logo.png" alt="dcase" style="height:17px"><div style="width:1px;height:18px;background:#E3E8E5"></div><div style="font-size:14px;font-weight:800">Form Builder</div><div style="flex:1"></div><div style="height:26px;padding:0 10px;border-radius:7px;border:1px solid #DFE5E2;color:#3B4A44;font-weight:600;display:flex;align-items:center;font-size:11px">Preview</div><div style="height:26px;padding:0 10px;border-radius:7px;background:#00BD80;color:#062B20;font-weight:800;display:flex;align-items:center;font-size:11px">Save Form</div></div>
+        <div style="display:grid;grid-template-columns:150px minmax(0,1fr)">
+          <div style="border-right:1px solid #E9EDEB;padding:14px 12px;display:flex;flex-direction:column;gap:6px;background:#F8FAF9"><div style="font-size:9.5px;letter-spacing:.08em;color:#8B9691;font-weight:700;margin-bottom:4px">FORM ELEMENTS</div>
+            <sc-for list="{{ formEls }}" as="e" hint-placeholder-count="6"><div style="display:flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid #E3E8E5;border-radius:7px;background:#fff;font-weight:600;font-size:11px;color:#3B4A44"><span style="width:10px;height:10px;border:1.5px solid #9AA5A0;border-radius:3px"></span>{{ e.label }}</div></sc-for>
+          </div>
+          <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+            <div style="padding:10px;border:1.5px dashed #CFD8D3;border-radius:8px;text-align:center;color:#8B9691;font-size:11px">Drag and drop form elements here</div>
+            <div style="font-weight:800;font-size:12px">Ticket Information</div>
+            <div><div style="font-weight:700;font-size:11px;margin-bottom:4px">Ticket Subject <span style="color:#B42318">*</span></div><div style="height:30px;border:1px solid #DFE5E2;border-radius:7px;display:flex;align-items:center;padding:0 10px;color:#9AA5A0;font-size:11px">Enter a brief summary of the issue</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><div style="font-weight:700;font-size:11px;margin-bottom:4px">Priority <span style="color:#B42318">*</span></div><div style="height:30px;border:1px solid #DFE5E2;border-radius:7px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:11px;color:#3B4A44">Select priority<span style="font-size:9px">▾</span></div></div><div><div style="font-weight:700;font-size:11px;margin-bottom:4px">Category <span style="color:#B42318">*</span></div><div style="height:30px;border:1px solid #DFE5E2;border-radius:7px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:11px;color:#3B4A44">Select category<span style="font-size:9px">▾</span></div></div></div>
+            <div><div style="font-weight:700;font-size:11px;margin-bottom:4px">Attachments</div><div style="padding:16px;border:1.5px dashed #CFD8D3;border-radius:8px;text-align:center;color:#7C8883;font-size:11px">Drag and drop files here or click to browse</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="access" data-reveal style="scroll-margin-top:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:center;padding:80px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div style="min-width:0;order:1;background:#fff;border:1px solid #E3E8E5;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(8,30,20,.35);color:#141A17;font-size:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px"><img src="assets/dcase-logo.png" alt="dcase" style="height:17px"><div style="width:1px;height:18px;background:#E3E8E5"></div><div><div style="font-size:14px;font-weight:800">Role &amp; Permission</div><div style="font-size:10.5px;color:#7C8883">Configure roles, permissions and security policies</div></div><div style="flex:1"></div><div style="height:26px;padding:0 10px;border-radius:7px;background:#00BD80;color:#062B20;font-weight:800;display:flex;align-items:center;font-size:11px">+ New Role</div></div>
+        <div style="border:1px solid #E9EDEB;border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+          <div><div style="font-weight:700;font-size:11px;color:#3B4A44;margin-bottom:6px">Role Name</div><div style="height:30px;border:1px solid #DFE5E2;border-radius:7px;display:flex;align-items:center;padding:0 10px;font-weight:600">Service Desk Manager</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px"><span style="font-weight:700;font-size:11px;color:#3B4A44">Active</span><span style="width:34px;height:18px;border-radius:999px;background:#00BD80;position:relative"><span style="position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#fff"></span></span></div></div>
+          <div><div style="font-weight:700;font-size:11px;color:#3B4A44;margin-bottom:6px">Permissions</div><div style="display:flex;flex-direction:column;gap:6px"><sc-for list="{{ perms }}" as="pm" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:8px;font-size:11.5px"><span style="width:14px;height:14px;border-radius:4px;display:grid;place-items:center;background: {{ pm.bg }};border:1.5px solid {{ pm.border }}"><svg width="9" height="9" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>{{ pm.label }}</div></sc-for></div></div>
+          <div><div style="font-weight:700;font-size:11px;color:#3B4A44;margin-bottom:6px">Manage Groups</div><div style="display:flex;flex-wrap:wrap;gap:5px"><span style="padding:3px 8px;border-radius:999px;background:#EEF2F0;font-weight:700;font-size:10.5px">Mobile Service</span><span style="padding:3px 8px;border-radius:999px;background:#EEF2F0;font-weight:700;font-size:10.5px">IT Operation</span><span style="padding:3px 8px;border-radius:999px;background:#EEF2F0;font-weight:700;font-size:10.5px">+6 more</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px">
+          <div style="border:1px solid #E9EDEB;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12.5px">Administrator</span><span style="width:7px;height:7px;border-radius:50%;background:#00BD80"></span></div><div style="font-size:10.5px;color:#7C8883;margin:3px 0 8px">Full system access with all permissions</div><div style="display:flex;gap:14px;font-size:10.5px;color:#3B4A44"><span>3 users</span><span>42 permissions</span></div></div>
+          <div style="border:1px solid #E9EDEB;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12.5px">Service Desk Manager</span><span style="width:7px;height:7px;border-radius:50%;background:#00BD80"></span></div><div style="font-size:10.5px;color:#7C8883;margin:3px 0 8px">Manage tickets, agents and reporting</div><div style="display:flex;gap:14px;font-size:10.5px;color:#3B4A44"><span>8 users</span><span>28 permissions</span></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;order:2"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#00BD80;letter-spacing:.1em">06</div><h3 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.04;letter-spacing:-.03em">{{ m5.title }}</h3><p style="margin:0;font-size:17px;color:#A8B3AE">{{ m5.tag }}</p><div style="display:flex;flex-direction:column;gap:14px;margin-top:8px"><sc-for list="{{ m5.bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:12px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div><div style="font-weight:800;font-size:15px">{{ b.title }}</div><div style="font-size:14px;color:#A8B3AE;margin-top:2px">{{ b.desc }}</div></div></div></sc-for></div></div>
+    </div>
+
+    <div id="api" data-reveal style="scroll-margin-top:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:center;padding:80px 0">
+      <div style="display:flex;flex-direction:column;gap:16px"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:13px;font-weight:700;color:#00BD80;letter-spacing:.1em">07</div><h3 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.2vw,40px);line-height:1.04;letter-spacing:-.03em">{{ m6.title }}</h3><p style="margin:0;font-size:17px;color:#A8B3AE">{{ m6.tag }}</p><div style="display:flex;flex-direction:column;gap:14px;margin-top:8px"><sc-for list="{{ m6.bullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;gap:12px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:rgba(0,189,128,.18);display:grid;place-items:center;margin-top:2px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><div><div style="font-weight:800;font-size:15px">{{ b.title }}</div><div style="font-size:14px;color:#A8B3AE;margin-top:2px">{{ b.desc }}</div></div></div></sc-for></div></div>
+      <div style="min-width:0;background:#fff;border:1px solid #E3E8E5;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(8,30,20,.35);color:#141A17;font-size:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px"><img src="assets/dcase-logo.png" alt="dcase" style="height:17px"><div style="width:1px;height:18px;background:#E3E8E5"></div><div><div style="font-size:14px;font-weight:800">API-Driven Integrations</div><div style="font-size:10.5px;color:#7C8883">Connect your ITSM platform with external systems</div></div><div style="flex:1"></div><div style="height:26px;padding:0 10px;border-radius:7px;border:1px solid #DFE5E2;color:#3B4A44;font-weight:600;display:flex;align-items:center;font-size:11px;white-space:nowrap">New +</div></div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+          <div style="border-radius:12px;padding:12px;background:#DDF6EA;text-align:center"><div style="font-size:20px;font-weight:800;letter-spacing:-.03em;color:#0B6B47">12</div><div style="font-size:10.5px;color:#3B4A44">Active Integrations</div></div>
+          <div style="border-radius:12px;padding:12px;background:#EEF2F0;text-align:center"><div style="font-size:20px;font-weight:800;letter-spacing:-.03em;color:#0B3D2E">98.2%</div><div style="font-size:10.5px;color:#3B4A44">API Uptime</div></div>
+          <div style="border-radius:12px;padding:12px;background:#F4F6F5;text-align:center"><div style="font-size:20px;font-weight:800;letter-spacing:-.03em;color:#141A17;font-variant-numeric:tabular-nums">{{ apiCalls }}</div><div style="font-size:10.5px;color:#3B4A44">API Calls (30 days)</div></div>
+        </div>
+        <div style="border:1px solid #E9EDEB;border-radius:12px;padding:12px 14px"><div style="font-weight:800;font-size:11.5px;margin-bottom:10px">Data Flow Architecture</div><div style="display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:10.5px;color:#3B4A44;text-align:center"><div style="flex:1"><div style="width:36px;height:36px;border-radius:10px;background:#EEF2F0;margin:0 auto 6px"></div>External Systems</div><span style="color:#00BD80;font-weight:900;animation:dcFlow 1.6s ease-in-out infinite">→</span><div style="flex:1"><div style="width:36px;height:36px;border-radius:10px;background:#DDF6EA;margin:0 auto 6px"></div>API Gateway</div><span style="color:#00BD80;font-weight:900;animation:dcFlow 1.6s .4s ease-in-out infinite">→</span><div style="flex:1"><div style="width:36px;height:36px;border-radius:10px;background:#00BD80;margin:0 auto 6px"></div>ITSM Core</div><span style="color:#00BD80;font-weight:900;animation:dcFlow 1.6s .8s ease-in-out infinite">→</span><div style="flex:1"><div style="width:36px;height:36px;border-radius:10px;background:#0B3D2E;margin:0 auto 6px"></div>Data Storage</div></div></div>
+        <div><div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:6px"><span style="font-weight:800">Recent API Activity</span><span style="color:#7C8883">View Logs</span></div>
+          <sc-for list="{{ apiRows }}" as="r" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:52px 44px minmax(0,1fr) 34px auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #EFF3F1;font-size:10.5px;animation: {{ r.anim }}"><span style="color:#7C8883">{{ r.time }}</span><span style="padding:2px 6px;border-radius:999px;text-align:center;font-weight:800;font-size:9.5px;background: {{ r.bg }};color: {{ r.fg }}">{{ r.method }}</span><span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.path }}</span><span style="color:#0B6B47;font-weight:800">{{ r.code }}</span><span style="color:#3B4A44;display:flex;align-items:center;gap:6px">{{ r.who }}<svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#00BD80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div></sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:40px 24px 120px">
+    <div data-reveal style="position:relative;overflow:hidden;border-radius:32px;padding:clamp(40px,6vw,72px);background:#0B3D2E;border:1px solid rgba(0,189,128,.35);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px;align-items:center">
+      <div style="position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.5),transparent 65%);filter:blur(20px);animation:dcOrb 10s ease-in-out infinite"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:16px"><h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,48px);line-height:1.04;letter-spacing:-.03em">{{ p.closing.title }}</h2><div style="font-size:18px;font-weight:700;color:#7FE3C0">{{ p.closing.sub }}</div><p style="margin:0;font-size:16px;color:#BFE9D8;line-height:1.6">{{ p.closing.body }}</p><a href="Contact.dc.html" style="display:inline-flex;align-self:flex-start;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:999px;background:#00BD80;color:#062B20;text-decoration:none;font-weight:800;font-size:15px;margin-top:6px" style-hover="transform:translateY(-2px);color:#062B20">{{ p.primary }}<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:10px"><sc-for list="{{ closingBullets }}" as="b" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-weight:700;font-size:14.5px"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:#00BD80;display:grid;place-items:center"><svg width="11" height="11" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#062B20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>{{ b.text }}</div></sc-for></div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" theme="dark" lang="{{ lang }}" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+const API = [
+  { method:'GET', path:'/api/v1/incidents', code:'200', who:'ServiceNow' }, { method:'POST', path:'/api/v1/tickets', code:'201', who:'Teams Bot' },
+  { method:'PUT', path:'/api/v1/incidents/INC-2024-0023', code:'200', who:'Slack App' }, { method:'GET', path:'/api/v1/assets', code:'200', who:'Asset Mgmt' },
+  { method:'POST', path:'/api/v1/webhooks/sla-breach', code:'202', who:'PagerDuty' }, { method:'GET', path:'/api/v1/users?role=agent', code:'200', who:'Okta' },
+];
+const MC = { GET:['#DDF6EA','#0B6B47'], POST:['#0B3D2E','#fff'], PUT:['#FFF3D6','#8A5A00'] };
+class Component extends DCLogic {
+  state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null, api: API.slice(0, 4).map((r, i) => ({ ...r, min: [2, 5, 12, 15][i] })), qi: 4, calls: 3204118 };
+  componentDidMount(){
+    Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.site = s; this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupReveal(), s.setupProgress()]; }); });
+    this.t = setInterval(() => this.setState(s => { const n = API[s.qi % API.length]; return { api: [{ ...n, min: 0, fresh: true }, ...s.api.map(r => ({ ...r, fresh: false, min: r.min + 3 }))].slice(0, 4), qi: s.qi + 1, calls: s.calls + 37 + Math.floor(Math.random() * 60) }; }), 3200);
+    this.t2 = setInterval(() => this.setState(s => ({ calls: s.calls + 1 + Math.floor(Math.random() * 3) })), 700);
+  }
+  componentWillUnmount(){ clearInterval(this.t); clearInterval(this.t2); (this.cleanups || []).forEach(f => f && f()); }
+  lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
+  renderVals(){
+    const lang = this.lang(), pc = this.state.pc, p = pc ? pc[lang].product : { closing: {}, modules: [] };
+    const mods = p.modules || [];
+    const M = i => mods[i] ? { ...mods[i], bullets: mods[i].bullets.map(b => ({ title: b[0], desc: b[1] })) } : { bullets: [] };
+    return {
+      lang, setLang: l => { this.setState({ lang: l }); if (this.mod) this.mod.setLangStored(l); },
+      p, m0: M(0), m1: M(1), m2: M(2), m3: M(3), m4: M(4), m5: M(5), m6: M(6),
+      moduleIndex: mods.map((m, i) => ({ n: '0' + (i + 1), title: m.title, href: '#' + m.id })),
+      closingBullets: (p.closing.bullets || []).map(b => ({ text: b })),
+      formEls: ['Text Input', 'Dropdown', 'Checkbox', 'Radio Button', 'Date Picker', 'File Upload'].map(l => ({ label: l })),
+      perms: [['View Tickets', true], ['Manage Tickets', true], ['View Reports', true], ['Admin Access', false]].map(x => ({ label: x[0], bg: x[1] ? '#00BD80' : '#fff', border: x[1] ? '#00BD80' : '#CFD8D3' })),
+      apiRows: this.state.api.map(r => ({ ...r, time: r.min === 0 ? 'just now' : r.min + ' min ago', bg: MC[r.method][0], fg: MC[r.method][1], anim: r.fresh ? 'dcRowIn .6s ease-out both' : 'none' })),
+      apiCalls: (this.state.calls / 1e6).toFixed(2) + 'M',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#0B0F0E; }
+a { color:#00BD80; } a:hover { color:#5FE0B4; }
+input, select, textarea { font-family:inherit; }
+input::placeholder, textarea::placeholder { color:#5F6B66; }
+@keyframes dcRise { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+@keyframes dcPulse { 0%,100% { box-shadow:0 0 0 0 rgba(0,189,128,.55); } 70% { box-shadow:0 0 0 10px rgba(0,189,128,0); } }
+@keyframes dcOrb { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-40px,30px) scale(1.15); } }
+@keyframes dcPop { 0% { transform:scale(.6); opacity:0; } 60% { transform:scale(1.08); } 100% { transform:scale(1); opacity:1; } }
+</style>
+<script type="module">import * as m from './copy.js'; window.DCASE_COPY = m.COPY; window.DCASE_LANG = m.getLang();</script>
+</helmet>
+<div style="background:#0B0F0E;color:#F2F5F3;font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:clip;min-height:100vh;-webkit-font-smoothing:antialiased">
+  <div data-progress style="position:fixed;top:0;left:0;height:2px;width:0;background:#00BD80;z-index:60"></div>
+  <div style="position:fixed;top:0;left:0;right:0;z-index:50"><dc-import name="SiteNav" theme="dark" lang="{{ lang }}" on-lang="{{ setLang }}" hint-size="100%,72px"></dc-import></div>
+
+  <section style="position:relative;padding:150px 24px 120px;overflow:hidden">
+    <div style="position:absolute;top:-160px;left:-120px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.22),rgba(0,189,128,0) 65%);filter:blur(30px);animation:dcOrb 12s ease-in-out infinite"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:48px 72px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px;position:sticky;top:110px">
+        <div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 10px;border-radius:999px;border:1px solid rgba(0,189,128,.35);background:rgba(0,189,128,.1);font-size:12.5px;font-weight:700;color:#7FE3C0;animation:dcRise .8s ease-out both"><span style="width:8px;height:8px;border-radius:50%;background:#00BD80;animation:dcPulse 2s infinite"></span>{{ p.eyebrow }}</div>
+        <h1 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(40px,5.2vw,68px);line-height:1;letter-spacing:-.035em;text-wrap:balance;animation:dcRise .9s .1s ease-out both">{{ p.title1 }}<br><span style="color:#00BD80">{{ p.title2 }}</span></h1>
+        <p style="margin:0;font-size:17.5px;line-height:1.6;color:#A8B3AE;animation:dcRise .9s .2s ease-out both">{{ p.sub }}</p>
+        <div style="margin-top:12px;padding:26px 28px;border-radius:24px;background:#121816;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:16px;animation:dcRise 1s .3s ease-out both">
+          <div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#00BD80">{{ p.infoTitle }}</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px 20px;font-size:14.5px">
+            <div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#7F8B86">{{ p.hq }}</div><div style="font-weight:700;margin-top:3px">{{ p.hqv }}</div></div>
+            <div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#7F8B86">{{ p.office }}</div><div style="font-weight:700;margin-top:3px">{{ p.officev }}</div></div>
+            <div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#7F8B86">{{ p.email }}</div><a href="mailto:info@dcase.com" style="font-weight:700;text-decoration:none;display:inline-block;margin-top:3px">info@dcase.com</a></div>
+            <div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#7F8B86">{{ p.phone }}</div><a href="tel:+902164554410" style="font-weight:700;text-decoration:none;color:#F2F5F3;display:inline-block;margin-top:3px">+90 216 455 44 10</a></div>
+          </div>
+        </div>
+      </div>
+      <div style="min-width:0;animation:dcRise 1s .25s ease-out both">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" style="padding:clamp(24px,3vw,36px);border-radius:28px;background:#121816;border:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px">
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD"><span>{{ f.first }} <span style="color:#00BD80">*</span></span><input required name="first" placeholder="John" style="height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none" style-focus="border-color:#00BD80;box-shadow:0 0 0 3px rgba(0,189,128,.2)"></label>
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD"><span>{{ f.last }} <span style="color:#00BD80">*</span></span><input required name="last" placeholder="Doe" style="height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none" style-focus="border-color:#00BD80;box-shadow:0 0 0 3px rgba(0,189,128,.2)"></label>
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD;grid-column:1/-1"><span>{{ f.email }} <span style="color:#00BD80">*</span></span><input required type="email" name="email" placeholder="john.doe@company.com" style="height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none" style-focus="border-color:#00BD80;box-shadow:0 0 0 3px rgba(0,189,128,.2)"></label>
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD"><span>{{ f.company }} <span style="color:#00BD80">*</span></span><input required name="company" placeholder="Acme Inc." style="height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none" style-focus="border-color:#00BD80;box-shadow:0 0 0 3px rgba(0,189,128,.2)"></label>
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD">{{ f.job }}<input name="job" placeholder="IT Manager" style="height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none" style-focus="border-color:#00BD80;box-shadow:0 0 0 3px rgba(0,189,128,.2)"></label>
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD">{{ f.phone }}<input type="tel" name="phone" placeholder="+90 (5xx) 000 00 00" style="height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none" style-focus="border-color:#00BD80;box-shadow:0 0 0 3px rgba(0,189,128,.2)"></label>
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD"><span>{{ f.topic }} <span style="color:#00BD80">*</span></span><select required name="topic" style="height:48px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none" style-focus="border-color:#00BD80"><option value="">—</option><sc-for list="{{ topics }}" as="tp" hint-placeholder-count="5"><option value="{{ tp.label }}">{{ tp.label }}</option></sc-for></select></label>
+          <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:700;color:#C9D1CD;grid-column:1/-1">{{ f.comments }}<textarea name="comments" rows="4" placeholder="{{ f.commentsPh }}" style="padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0B0F0E;color:#F2F5F3;font-size:15px;outline:none;resize:vertical;min-height:110px" style-focus="border-color:#00BD80;box-shadow:0 0 0 3px rgba(0,189,128,.2)"></textarea></label>
+          <div style="grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:4px"><span style="font-size:12.5px;color:#7F8B86"><span style="color:#00BD80">*</span> {{ f.required }}</span><button type="submit" style="display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;border:none;cursor:pointer;background:#00BD80;color:#062B20;font-family:inherit;font-weight:800;font-size:15px;box-shadow:0 14px 40px -12px rgba(0,189,128,.75);transition:transform .25s" style-hover="transform:translateY(-2px)">{{ f.submit }}<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div>
+        </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:clamp(32px,4vw,56px);border-radius:28px;background:#0B3D2E;border:1px solid rgba(0,189,128,.35);display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;min-height:420px;justify-content:center">
+          <span style="width:72px;height:72px;border-radius:50%;background:#00BD80;display:grid;place-items:center;animation:dcPop .6s cubic-bezier(.2,.7,.2,1) both"><svg width="32" height="32" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#062B20" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <p style="margin:0;font-size:19px;line-height:1.5;max-width:460px;font-weight:600">{{ f.success }}</p>
+          <a href="index.html" style="display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px" style-hover="background:rgba(255,255,255,.08);color:#fff">← DCase</a>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" theme="dark" lang="{{ lang }}" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null, sent: false };
+  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupProgress()]; }); }); }
+  componentWillUnmount(){ (this.cleanups || []).forEach(f => f && f()); }
+  lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
+  renderVals(){
+    const lang = this.lang(), pc = this.state.pc, p = pc ? pc[lang].contact : { form: { topics: [] } };
+    return {
+      lang, setLang: l => { this.setState({ lang: l }); if (this.mod) this.mod.setLangStored(l); }, p, f: p.form || {},
+      topics: (p.form && p.form.topics || []).map(t => ({ label: t })),
+      notSent: !this.state.sent, sent: this.state.sent,
+      submit: e => { e.preventDefault(); this.setState({ sent: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

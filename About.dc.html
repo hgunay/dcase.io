@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; background:#0B0F0E; }
+a { color:#00BD80; } a:hover { color:#5FE0B4; }
+@keyframes dcRise { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+@keyframes dcPulse { 0%,100% { box-shadow:0 0 0 0 rgba(0,189,128,.55); } 70% { box-shadow:0 0 0 10px rgba(0,189,128,0); } }
+@keyframes dcOrb { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-40px,30px) scale(1.15); } }
+@keyframes dcSpin { to { transform:rotate(360deg); } }
+</style>
+<script type="module">import * as m from './copy.js'; window.DCASE_COPY = m.COPY; window.DCASE_LANG = m.getLang();</script>
+</helmet>
+<div style="background:#0B0F0E;color:#F2F5F3;font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:clip;min-height:100vh;-webkit-font-smoothing:antialiased">
+  <div data-progress style="position:fixed;top:0;left:0;height:2px;width:0;background:#00BD80;z-index:60"></div>
+  <div style="position:fixed;top:0;left:0;right:0;z-index:50"><dc-import name="SiteNav" theme="dark" lang="{{ lang }}" on-lang="{{ setLang }}" hint-size="100%,72px"></dc-import></div>
+
+  <section style="position:relative;padding:150px 24px 72px;overflow:hidden">
+    <div style="position:absolute;top:-160px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.24),rgba(0,189,128,0) 65%);filter:blur(30px);animation:dcOrb 12s ease-in-out infinite"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px 64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 10px;border-radius:999px;border:1px solid rgba(0,189,128,.35);background:rgba(0,189,128,.1);font-size:12.5px;font-weight:700;color:#7FE3C0;animation:dcRise .8s ease-out both"><span style="width:8px;height:8px;border-radius:50%;background:#00BD80;animation:dcPulse 2s infinite"></span>{{ p.eyebrow }}</div>
+        <h1 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(40px,5.2vw,68px);line-height:1;letter-spacing:-.035em;text-wrap:balance;animation:dcRise .9s .1s ease-out both">{{ p.title1 }}<br><span style="color:#00BD80">{{ p.title2 }}</span></h1>
+        <p style="margin:0;font-size:18px;line-height:1.6;color:#A8B3AE;animation:dcRise .9s .2s ease-out both">{{ p.sub }}</p>
+      </div>
+      <div style="position:relative;display:grid;place-items:center;min-height:320px;animation:dcRise 1s .3s ease-out both">
+        <div style="position:absolute;width:300px;height:300px;border-radius:50%;border:1px dashed rgba(0,189,128,.35);animation:dcSpin 40s linear infinite"></div>
+        <div style="position:absolute;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.08)"></div>
+        <div style="position:absolute;width:300px;height:300px;animation:dcSpin 40s linear infinite"><span style="position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#00BD80;box-shadow:0 0 16px rgba(0,189,128,.9)"></span></div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:6px"><img src="assets/dcase-icon.png" alt="" style="height:64px;width:auto"><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:54px;line-height:1;letter-spacing:-.04em;margin-top:8px">25<span style="color:#00BD80">+</span></div><div style="font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7F8B86">{{ yearsLabel }}</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:24px 24px 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px">
+      <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="4">
+        <div data-reveal data-reveal-delay="{{ b.delay }}" style="position:relative;overflow:hidden;padding:32px 30px;border-radius:24px;background:#121816;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:14px;transition:border-color .3s" style-hover="border-color:rgba(0,189,128,.45)">
+          <div style="position:absolute;right:20px;top:4px;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:110px;line-height:1;letter-spacing:-.06em;color:rgba(255,255,255,.04)">{{ b.n }}</div>
+          <h2 style="position:relative;margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:28px;letter-spacing:-.02em;line-height:1.1;color:#00BD80">{{ b.title }}</h2>
+          <p style="position:relative;margin:0;font-size:16px;color:#C9D1CD;line-height:1.65;text-wrap:pretty">{{ b.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:110px 24px 0">
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:36px"><h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(32px,4.2vw,54px);line-height:1.02;letter-spacing:-.03em">{{ p.valuesTitle }}</h2><p style="margin:0;font-size:17px;color:#A8B3AE;max-width:420px">{{ p.valuesSub }}</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:2px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
+      <sc-for list="{{ values }}" as="v" hint-placeholder-count="4"><div data-reveal data-reveal-delay="{{ v.delay }}" style="padding:32px 28px;background:#121816;display:flex;flex-direction:column;gap:14px;transition:background .3s" style-hover="background:#182019"><span style="width:40px;height:40px;border-radius:12px;background:rgba(0,189,128,.14);display:grid;place-items:center;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;color:#00BD80">{{ v.n }}</span><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:24px;letter-spacing:-.02em">{{ v.title }}</div><p style="margin:0;font-size:14.5px;color:#A8B3AE;line-height:1.6">{{ v.desc }}</p></div></sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:110px 24px 120px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px">
+    <div data-reveal style="padding:32px 30px;border-radius:24px;background:#121816;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:18px">
+      <div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#00BD80">{{ p.officesTitle }}</div>
+      <sc-for list="{{ offices }}" as="o" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.08)"><span style="width:12px;height:12px;border-radius:50%;background:#00BD80;box-shadow:0 0 0 6px rgba(0,189,128,.15);flex:none"></span><div><div style="font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:22px;letter-spacing:-.02em">{{ o.city }}</div><div style="font-size:14px;color:#A8B3AE">{{ o.role }}</div></div></div></sc-for>
+      <div style="display:flex;flex-wrap:wrap;gap:14px 24px;font-size:14.5px;font-weight:700;padding-top:6px"><a href="mailto:info@dcase.com" style="text-decoration:none">info@dcase.com</a><a href="tel:+902164554410" style="text-decoration:none;color:#F2F5F3">+90 216 455 44 10</a></div>
+    </div>
+    <div data-reveal data-reveal-delay="100" style="position:relative;overflow:hidden;padding:32px 30px;border-radius:24px;background:#0B3D2E;border:1px solid rgba(0,189,128,.35);display:flex;flex-direction:column;gap:14px;justify-content:center">
+      <div style="position:absolute;top:-120px;right:-100px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.5),transparent 65%);filter:blur(20px)"></div>
+      <h2 style="position:relative;margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3.4vw,40px);line-height:1.04;letter-spacing:-.03em">{{ p.ctaTitle }}</h2>
+      <p style="position:relative;margin:0;font-size:16px;color:#BFE9D8;line-height:1.6">{{ p.ctaBody }}</p>
+      <a href="Contact.dc.html" style="position:relative;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:999px;background:#00BD80;color:#062B20;text-decoration:none;font-weight:800;font-size:15px;margin-top:8px" style-hover="transform:translateY(-2px);color:#062B20">{{ p.ctaButton }}<svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 H14 M9 3 L14 8 L9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" theme="dark" lang="{{ lang }}" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null };
+  componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupReveal(), s.setupProgress()]; }); }); }
+  componentWillUnmount(){ (this.cleanups || []).forEach(f => f && f()); }
+  lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
+  renderVals(){
+    const lang = this.lang(), pc = this.state.pc, p = pc ? pc[lang].about : { blocks: [], values: [], offices: [] };
+    return {
+      lang, setLang: l => { this.setState({ lang: l }); if (this.mod) this.mod.setLangStored(l); }, p,
+      yearsLabel: lang === 'tr' ? 'yıllık deneyim' : 'years of experience',
+      blocks: (p.blocks || []).map((b, i) => ({ ...b, n: '0' + (i + 1), delay: (i % 2) * 100 })),
+      values: (p.values || []).map((v, i) => ({ title: v[0], desc: v[1], n: '0' + (i + 1), delay: i * 90 })),
+      offices: (p.offices || []).map(o => ({ city: o[0], role: o[1] })),
+    };
+  }
+}
+</script>
+</body>
+</html>
