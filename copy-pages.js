@@ -77,8 +77,8 @@ en: {
     form:{ first:'First name', last:'Last name', email:'Business email', company:'Company', job:'Job title', phone:'Business phone', topic:'I would like to', topics:['Request a demo','Talk to sales','Get technical support','Explore a partnership','Something else'], comments:'Additional comments', commentsPh:'Tell us more about your needs\u2026', submit:'Send message', required:'Required fields', success:'Thank you. Your message has been received; we will reply within one business day.' },
   },
   resources: {
-    eyebrow:'Resources', title1:'Learn how teams', title2:'run service better.', sub:'Playbooks, stories and product walkthroughs from the DCase team.',
-    cards:[ ['Blog','Insights on service management, automation and ITSM practice.','#blog','Read the blog'], ['Use cases','Industry playbooks for telecom, finance, government, providers and education.','Industries.dc.html','See industries'], ['Success stories','Measured results from customers in telecommunications, healthcare and government.','Customers.dc.html','Read the stories'], ['Product demo','A guided walkthrough of tickets, workflows, SLAs and analytics.','Contact.dc.html','Book a demo'] ],
+    eyebrow:'Resources', title1:'Learn how teams', title2:'run service better.', sub:'Industry playbooks, customer stories and product walkthroughs from the DCase team.',
+    cards:[ ['Use cases','Industry playbooks for telecom, finance, government, providers and education.','Industries.dc.html','See industries'], ['Success stories','Measured results from customers in telecommunications, healthcare and government.','Customers.dc.html','Read the stories'], ['Product demo','A guided walkthrough of tickets, workflows, SLAs and analytics.','Contact.dc.html','Book a demo'] ],
     blogTitle:'From the blog', blogSub:'First articles are on the way. Subscribe to be notified.', subscribe:'Notify me', emailPh:'you@company.com', subscribed:'Thanks, you are on the list.',
     topics:['Incident management','Workflow automation','SLA & OLA','Analytics','Enterprise service management','Compliance'],
   },
@@ -161,8 +161,8 @@ tr: {
     form:{ first:'Ad', last:'Soyad', email:'Kurumsal e-posta', company:'Şirket', job:'Unvan', phone:'İş telefonu', topic:'Konu', topics:['Demo talep etmek istiyorum','Satış ekibiyle görüşmek istiyorum','Teknik destek almak istiyorum','İş ortaklığı görüşmek istiyorum','Başka bir konu'], comments:'Ek notlar', commentsPh:'İhtiyaçlarınızdan biraz bahsedin\u2026', submit:'Mesajı gönder', required:'Zorunlu alanlar', success:'Teşekkürler. Mesajınız alındı; bir iş günü içinde yanıtlayacağız.' },
   },
   resources: {
-    eyebrow:'Kaynaklar', title1:'Ekipler hizmeti nasıl', title2:'daha iyi yönetiyor?', sub:'DCase ekibinden rehberler, hikâyeler ve ürün turları.',
-    cards:[ ['Blog','Hizmet yönetimi, otomasyon ve ITSM pratiği üzerine içgörüler.','#blog','Blogu oku'], ['Kullanım senaryoları','Telekom, finans, kamu, hizmet sağlayıcı ve eğitim için sektörel rehberler.','Industries.dc.html','Sektörlere bak'], ['Başarı hikâyeleri','Telekomünikasyon, sağlık ve kamu müşterilerinden ölçülmüş sonuçlar.','Customers.dc.html','Hikâyeleri oku'], ['Ürün demosu','Bilet, iş akışı, SLA ve analitiğin rehberli turu.','Contact.dc.html','Demo planla'] ],
+    eyebrow:'Kaynaklar', title1:'Ekipler hizmeti nasıl', title2:'daha iyi yönetiyor?', sub:'DCase ekibinden sektörel rehberler, müşteri hikâyeleri ve ürün turları.',
+    cards:[ ['Kullanım senaryoları','Telekom, finans, kamu, hizmet sağlayıcı ve eğitim için sektörel rehberler.','Industries.dc.html','Sektörlere bak'], ['Başarı hikâyeleri','Telekomünikasyon, sağlık ve kamu müşterilerinden ölçülmüş sonuçlar.','Customers.dc.html','Hikâyeleri oku'], ['Ürün demosu','Bilet, iş akışı, SLA ve analitiğin rehberli turu.','Contact.dc.html','Demo planla'] ],
     blogTitle:'Blogdan', blogSub:'İlk yazılar yolda. Haberdar olmak için kaydolun.', subscribe:'Haber ver', emailPh:'siz@sirket.com', subscribed:'Teşekkürler, listeye eklendiniz.',
     topics:['Olay yönetimi','İş akışı otomasyonu','SLA ve OLA','Analitik','Kurumsal hizmet yönetimi','Uyumluluk'],
   },

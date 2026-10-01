@@ -34,8 +34,8 @@ input { font-family:inherit; } input::placeholder { color:#5F6B66; }
     </div>
   </section>
 
-  <section style="max-width:1200px;margin:0 auto;padding:16px 24px 0">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+  <section style="max-width:1200px;margin:0 auto;padding:16px 24px 120px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
       <sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
         <a href="{{ c.href }}" data-reveal data-reveal-delay="{{ c.delay }}" style="display:flex;flex-direction:column;gap:14px;min-height:260px;padding:28px;border-radius:24px;background:#121816;border:1px solid rgba(255,255,255,.08);text-decoration:none;color:#F2F5F3;transition:transform .35s,border-color .35s,box-shadow .35s;position:relative;overflow:hidden" style-hover="transform:translateY(-6px);border-color:rgba(0,189,128,.45);box-shadow:0 30px 60px -30px rgba(0,189,128,.35);color:#fff">
           <div style="position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.2),transparent 65%)"></div>
@@ -48,28 +48,13 @@ input { font-family:inherit; } input::placeholder { color:#5F6B66; }
     </div>
   </section>
 
-  <section id="blog" style="max-width:1200px;margin:0 auto;padding:110px 24px 120px;scroll-margin-top:100px">
-    <div data-reveal style="position:relative;overflow:hidden;border-radius:32px;padding:clamp(40px,6vw,72px);background:#0B3D2E;border:1px solid rgba(0,189,128,.35);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px;align-items:center">
-      <div style="position:absolute;top:-160px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,189,128,.5),transparent 65%);filter:blur(20px);animation:dcOrb 10s ease-in-out infinite"></div>
-      <div style="position:relative;display:flex;flex-direction:column;gap:14px">
-        <h2 style="margin:0;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,48px);line-height:1.04;letter-spacing:-.03em">{{ p.blogTitle }}</h2>
-        <p style="margin:0;font-size:16.5px;color:#BFE9D8">{{ p.blogSub }}</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px"><sc-for list="{{ topics }}" as="t" hint-placeholder-count="6"><span style="padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.18);font-size:13px;font-weight:700;color:#E6EBE8">{{ t.label }}</span></sc-for></div>
-      </div>
-      <div style="position:relative">
-        <sc-if value="{{ notSub }}" hint-placeholder-val="{{ true }}"><form onSubmit="{{ subscribe }}" style="display:flex;flex-wrap:wrap;gap:10px;padding:10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)"><input required type="email" placeholder="{{ p.emailPh }}" style="flex:1;min-width:200px;height:48px;padding:0 18px;border-radius:999px;border:none;background:transparent;color:#fff;font-size:15px;outline:none"><button type="submit" style="height:48px;padding:0 22px;border-radius:999px;border:none;cursor:pointer;background:#00BD80;color:#062B20;font-family:inherit;font-weight:800;font-size:14.5px">{{ p.subscribe }}</button></form></sc-if>
-        <sc-if value="{{ sub }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:999px;background:rgba(0,189,128,.16);border:1px solid rgba(0,189,128,.4);font-weight:700"><span style="width:28px;height:28px;border-radius:50%;background:#00BD80;display:grid;place-items:center;flex:none"><svg width="12" height="12" viewBox="0 0 10 10"><path d="M1.5 5.5 L4 8 L8.5 2.5" fill="none" stroke="#062B20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>{{ p.subscribed }}</div></sc-if>
-      </div>
-    </div>
-  </section>
-
   <dc-import name="SiteFooter" theme="dark" lang="{{ lang }}" hint-size="100%,520px"></dc-import>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;tr&quot;],&quot;tsType&quot;:&quot;'en' | 'tr'&quot;,&quot;section&quot;:&quot;Content&quot;}}">
-const ICONS = ['M4 4h16v16H4zM8 9h8M8 13h8M8 17h5','M3 7h18M3 12h18M3 17h12','M8 21h8M12 17v4M4 3h16v14H4zM8 13l3-3 2 2 3-4','M5 3l14 9-14 9z'];
+const ICONS = ['M3 7h18M3 12h18M3 17h12','M8 21h8M12 17v4M4 3h16v14H4zM8 13l3-3 2 2 3-4','M5 3l14 9-14 9z'];
 class Component extends DCLogic {
-  state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null, sub: false };
+  state = { lang: null, copy: window.DCASE_COPY || null, stored: window.DCASE_LANG || null, pc: null };
   componentDidMount(){ Promise.all([import('./site.js'), import('./copy-pages.js'), import('./copy.js')]).then(([s, pcm, m]) => { this.mod = m; this.setState({ pc: pcm.PAGES_COPY, copy: m.COPY, stored: m.getLang() }, () => { this.cleanups = [s.setupAnchors(), s.setupReveal(), s.setupProgress()]; }); }); }
   componentWillUnmount(){ (this.cleanups || []).forEach(f => f && f()); }
   lang(){ return this.state.lang || this.props.lang || this.state.stored || 'en'; }
@@ -78,8 +63,6 @@ class Component extends DCLogic {
     return {
       lang, setLang: l => { this.setState({ lang: l }); if (this.mod) this.mod.setLangStored(l); }, p,
       cards: (p.cards || []).map((c, i) => ({ title: c[0], desc: c[1], href: c[2], link: c[3], icon: ICONS[i], delay: i * 90 })),
-      topics: (p.topics || []).map(t => ({ label: t })),
-      notSub: !this.state.sub, sub: this.state.sub, subscribe: e => { e.preventDefault(); this.setState({ sub: true }); },
     };
   }
 }

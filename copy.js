@@ -24,7 +24,7 @@ en: {
         { heading:'By industry', links:[ ['Telecommunications & Media','', P.industries+'#telecom'], ['Financial Services','', P.industries+'#finance'], ['Government','', P.industries+'#government'], ['Service Providers','', P.industries+'#providers'], ['Education','', P.industries+'#education'] ] },
       ],
       resources: [
-        { heading:'Learn', links:[ ['Blog','Insights on service management', P.resources], ['Use Cases','Industry playbooks', P.industries], ['Success Stories','Measured results from customers', P.customers], ['Product Demo','See DCase in action', P.contact] ] },
+        { heading:'Learn', links:[ ['Use Cases','Industry playbooks', P.industries], ['Success Stories','Measured results from customers', P.customers], ['Product Demo','See DCase in action', P.contact] ] },
       ],
       company: [
         { heading:'Company', links:[ ['About DCase','25+ years of collective experience', P.about], ['Contact','Tallinn · Istanbul', P.contact] ] },
@@ -97,7 +97,7 @@ en: {
     cols:[
       { heading:'Product', links:[ ['Ticket & Incident Management',P.product+'#tickets'], ['Workflow Automation',P.product+'#workflow'], ['SLA & OLA Management',P.product+'#sla'], ['Reporting & Analytics',P.product+'#analytics'], ['Form & Template Designer',P.product+'#forms'], ['Role-Based Access',P.product+'#access'], ['API Integrations',P.product+'#api'] ] },
       { heading:'Solutions', links:[ ['IT Operations',P.solutions+'#it'], ['HR & Finance',P.solutions+'#hr'], ['Customer Experience',P.solutions+'#cx'], ['Telecommunications',P.industries+'#telecom'], ['Financial Services',P.industries+'#finance'], ['Government',P.industries+'#government'], ['Education',P.industries+'#education'] ] },
-      { heading:'Resources', links:[ ['Blog',P.resources], ['Use Cases',P.industries], ['Success Stories',P.customers], ['Product Demo',P.contact] ] },
+      { heading:'Resources', links:[ ['Use Cases',P.industries], ['Success Stories',P.customers], ['Product Demo',P.contact] ] },
       { heading:'Company', links:[ ['About',P.about], ['Contact',P.contact], ['Request a demo',P.contact] ] },
     ],
     hq:'Headquarters', hqv:'DCase OÜ · Tallinn, Estonia', office:'Regional office', officev:'Istanbul, Türkiye',
@@ -126,7 +126,7 @@ tr: {
         { heading:'Sektöre göre', links:[ ['Telekomünikasyon ve Medya','', P.industries+'#telecom'], ['Finansal Hizmetler','', P.industries+'#finance'], ['Kamu','', P.industries+'#government'], ['Hizmet Sağlayıcılar','', P.industries+'#providers'], ['Eğitim','', P.industries+'#education'] ] },
       ],
       resources: [
-        { heading:'Öğrenin', links:[ ['Blog','Hizmet yönetimi üzerine içgörüler', P.resources], ['Kullanım Senaryoları','Sektörel rehberler', P.industries], ['Başarı Hikâyeleri','Müşterilerden ölçülmüş sonuçlar', P.customers], ['Ürün Demosu','DCase\u2019i iş başında görün', P.contact] ] },
+        { heading:'Öğrenin', links:[ ['Kullanım Senaryoları','Sektörel rehberler', P.industries], ['Başarı Hikâyeleri','Müşterilerden ölçülmüş sonuçlar', P.customers], ['Ürün Demosu','DCase\u2019i iş başında görün', P.contact] ] },
       ],
       company: [
         { heading:'Şirket', links:[ ['DCase Hakkında','25+ yıllık ortak deneyim', P.about], ['İletişim','Tallinn · İstanbul', P.contact] ] },
@@ -199,7 +199,7 @@ tr: {
     cols:[
       { heading:'Ürün', links:[ ['Bilet ve Olay Yönetimi',P.product+'#tickets'], ['İş Akışı Otomasyonu',P.product+'#workflow'], ['SLA ve OLA Yönetimi',P.product+'#sla'], ['Raporlama ve Analitik',P.product+'#analytics'], ['Form ve Şablon Tasarımcısı',P.product+'#forms'], ['Rol Tabanlı Erişim',P.product+'#access'], ['API Entegrasyonları',P.product+'#api'] ] },
       { heading:'Çözümler', links:[ ['BT Operasyonları',P.solutions+'#it'], ['İK ve Finans',P.solutions+'#hr'], ['Müşteri Deneyimi',P.solutions+'#cx'], ['Telekomünikasyon',P.industries+'#telecom'], ['Finansal Hizmetler',P.industries+'#finance'], ['Kamu',P.industries+'#government'], ['Eğitim',P.industries+'#education'] ] },
-      { heading:'Kaynaklar', links:[ ['Blog',P.resources], ['Kullanım Senaryoları',P.industries], ['Başarı Hikâyeleri',P.customers], ['Ürün Demosu',P.contact] ] },
+      { heading:'Kaynaklar', links:[ ['Kullanım Senaryoları',P.industries], ['Başarı Hikâyeleri',P.customers], ['Ürün Demosu',P.contact] ] },
       { heading:'Şirket', links:[ ['Hakkımızda',P.about], ['İletişim',P.contact], ['Demo talep et',P.contact] ] },
     ],
     hq:'Genel merkez', hqv:'DCase OÜ · Tallinn, Estonya', office:'Bölge ofisi', officev:'İstanbul, Türkiye',
